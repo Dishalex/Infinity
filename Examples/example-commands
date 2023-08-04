@@ -1,0 +1,67 @@
+Alias   Command			Description
+h 	 help			show help message
+a	 add			add a contact record
+c        change			change a contact record
+d        delete		        delete record	
+s        search			search record(s)
+sa	 show all		show all records in a browsing mode
+sp	 show page #		show records page in a browsing mode
+sp	 show phones		list a phone on record
+se	 show emails		list a emails on record
+sb	 show birthday		show birthday on record
+d2b	 days to birthday       show days to birthday
+n        note			note taking mode
+...
+
+
+### Example commands:
+Command: 		Args:
+help			'None'
+add			<name>, <birthday>/<phones>/<emails>
+change			<name>, <birthday>/<phones>/<emails>
+delete			<name>, <birthday>/<phones>/<emails>
+search			<name>/<phone>/<email>
+show all		'None'
+show page		<page_num>
+show phones		<name>
+show emails		<name>
+show birthday		<name>
+days to birthday	<name>
+note		        'None'
+...
+
+
+### Expected input:
+add John
+add 'John Doe'
+add 'John Doe' 38044111111
+add 'John Doe' 38044111111 38044222222
+add 'John Doe' 2000/01/01
+add 'John Doe' 2000/01/01 38044111111 38044222222
+add 'John Doe' 38044111111 test@test.com
+add 'John Doe' 38044111111 test@test.com
+add 'John Doe' 38044111111 test@test.com test2@test2.com
+add 'John Doe' 38044111111 38044222222 test@test.com test2@test2.com
+add 'John Doe' 2000/01/01 test@test.com 
+add 'John Doe' 2000/01/01 test@test.com test2@test2.com
+add 'John Doe' 2000/01/01 38044111111 38044222222 test@test.com test2@test2.com
+
+change John 'Jane Doe'
+change 'John Doe' 'Jane Doe'
+change 'Jane Doe' 38044111111                                                     
+change 'Jane Doe' 38044111111 38044222222
+change 'Jane Doe' 2000/01/01                                                      
+change 'Jane Doe' 2000/01/01 38044111111 38044222222                              
+change 'Jane Doe' 38044111111 test@test.com                                       
+change 'Jane Doe' 38044111111 test@test.com                                      
+change 'Jane Doe' 38044111111 test@test.com test2@test2.com
+change 'Jane Doe' 38044111111 38044222222 test@test.com test2@test2.com
+change 'Jane Doe' 2000/01/01 test@test.com 
+change 'Jane Doe' 2000/01/01 test@test.com test2@test2.com
+change 'Jane Doe' 2000/01/01 38044111111 38044222222 test@test.com test2@test2.com
+...
+
+### Input Errors:
+''
+add ''
+...
