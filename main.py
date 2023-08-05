@@ -1,7 +1,7 @@
 import re
 import os
 
-
+adressbook = AdressBook()
 # команди помічника
 class Handler():
     def handle_hello(self):
@@ -19,8 +19,11 @@ class Handler():
     def handle_d2b(self):
         pass
 
-    def handle_add(self):
-        pass
+    def handle_add(self, name, birthday, phone):
+        record = Record(name, birthday, phone)
+        adressbook.append(record)
+        return f"Contact {record.name.value} was created!"
+        
 
     def handle_change(self):
         pass
