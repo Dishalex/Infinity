@@ -1,6 +1,17 @@
 import re
 import os
 
+def input_error(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except KeyError:
+            return "Error: Invalid command. Please try again."
+        except ValueError:
+            return "Error: Invalid input format. Please try again."
+        except IndexError:
+            return "Error: Contact not found. Please try again."
+    return wrapper
 
 # команди помічника
 class Handler():
