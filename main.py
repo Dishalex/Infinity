@@ -1,125 +1,101 @@
 import re
-import os
+from record import Record
+from name import Name
+from phone import Phone
+from birthday import Birthday
+from adressbook import AdressBook
+adressbook = AdressBook()
 
-def input_error(func):
-    def wrapper(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except KeyError:
-            return "Error: Invalid command. Please try again."
-        except ValueError:
-            return "Error: Invalid input format. Please try again."
-        except IndexError:
-            return "Error: Contact not found. Please try again."
-    return wrapper
+def add_record(args):
+    if args[0]:
+        name = Name(args[0])
+        record = Record(name)
+    if args[1]:
+        birthday = Birthday(args[1][0])
+        record = Record(name, birthday)
+    if len(args[1]) > 1:
+        birthday = Birthday(args[1][0])
+        phone = Phone(args[1][1])
+        record = Record(name, birthday, phone)
+    
+    print(args)
 
-# команди помічника
-class Handler():
-    def handle_hello(self):
-        pass
+    
+    adressbook.add_record(record)
+    print(adressbook.data)
 
-    def handle_show_all(self):
-        pass
-
-    def handle_show_phones(self):
-        pass
-
-    def handle_show_bday(self):
-        pass
-
-    def handle_d2b(self):
-        pass
-
-    def handle_add(self):
-        pass
-
-    def handle_change(self):
-        pass
-
-    def handle_delete(self):
-        pass
-
-    def handle_search(self):
-        pass
-
-    def handle_exit(self):
-        exit()
-
-
-# словник команд та їх скорочених назв
 COMMANDS = {
-    Handler.handle_hello: ('hello', 'hi'),
-    Handler.handle_show_all: ('sa', 'show all'),
-    Handler.handle_show_phones: ('sp', 'show phones' 'phones'),
-    Handler.handle_show_bday: ('sb', 'show bday', 'birthday'),
-    Handler.handle_d2b: ('d2b', 'sd2b', 'show days to birthday'),
-    Handler.handle_add: ('a', 'add'),
-    Handler.handle_change: ('c', 'e', 'change', 'edit'),
-    Handler.handle_delete: ('d', 'del', 'delete'),
-    Handler.handle_search: ('s', 'sn', 'sp', 'search', 'search name', 'search phone'),
-    Handler.handle_exit: ('q', 'quit', 'close', 'exit')
+    add_record: ('add', 'append'),
+    # phone_command: ('phone',),
+    # delete_phone_command: ('delete',),
+    # exit_command: ('good bye', 'close', 'exit'),
+    # show_all_command: ('show all',),
+    # help_command: ('help',),
+    # hello_command: ('hello',),
+    # birthday_command: ('birthday',),
+    # days_to_birthday_command: ('days to birthday',),
+    # search_command: ('search',)
 }
 
 
-# функція очищення екрану
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+def get_user_name(user_info: str) -> tuple:
+
+    regex_name = r'[a-zA-ZА-Яа-я]+'
+    user_input_split = user_info.strip().split()
+    name_list = []
+
+    for i in user_input_split:
+        match_name = re.match(regex_name, i)
+        if match_name:
+            if len(match_name.group()) == len(i):
+                name_list.append(i.capitalize())
+                user_info = user_info[match_name.span()[1]:].strip()
+                user_data = user_info
+            else:
+                print(f'\nName <<< {i} >>> is not correct! Try again!')
+                user_data = ('', '')
+                return user_data
+
+    user_data = user_data.split()
+    if len(name_list) >= 1:
+        name = ' '.join(name_list)
+    else:
+        name = ''
+        user_data = []
+
+    return name, user_data
 
 
-# парсер команд
-def parse_input(input_string: str):
 
-    # ініціалізація змінних для зберігання результатів парсингу
-    parsed_command = None
-    parsed_name = None
-    parsed_birthday = None
-    parsed_phones = []
+def parser(user_input: str):
+    user_input_lower = user_input.lower()
+    for command, kwds in COMMANDS.items():
+        for kwd in kwds:
+            if user_input_lower.startswith(kwd):
+                user_info = user_input[len(kwd):].strip()
+                return command, user_info
 
-    # пошук команд помічника у рядку, введеному користувачем
-    words = input_string.strip().split()
-    for word in words:
-        for command, aliases in COMMANDS.items():
-            if word.lower() in map(str.lower, aliases):
-                parsed_command = command
-                words.remove(word)
-                break
-
-    # класифікація аргументів
-    for word in words:
-        # пошук name
-        if re.match(r'^[a-zA-Z]+$', word):
-            parsed_name = word
-        # пошук birthday
-        elif re.match(r'^\d{4}/\d{2}/\d{2}$', word):
-            parsed_birthday = word
-        # пошук phones
-        elif re.match(r'^\d{11}$', word):
-            parsed_phones.append(word)
-
-    # повернення відсортованих аргументів
-    return parsed_command, parsed_name, parsed_birthday, parsed_phones
+    print('\nUnknown command! Try againe!')
+    command = None
+    user_info = None
+    return command, user_info
 
 
 def main():
-    try:
-        # безкінечний цикл для вводу данних:
-        while True:
-            user_input = input("[i] CTRL+C to exit\n>>> ")
-            parsed_command, parsed_name, parsed_birthday, parsed_phones = parse_input(
-                user_input)
 
-            clear_screen()
-            # якщо команда допустима парсер її аналізує і виводить результат на екран
-            if parsed_command:
-                print(
-                    f"[i] <Debug> cmd: {parsed_command.__name__} name: {parsed_name}, bday: {parsed_birthday}, phones: {parsed_phones}")
-            # в іншому разі, буде запропоновано повторно ввести команду
-            else:
-                print('[-] Try again')
-    except:
-        KeyError
-    finally:
-        print('\n[+] Arrivederci :)')
+
+    while True:
+
+        user_input = (input(f'\nEnter command, please!\n\n>>>')).strip()
+
+        command, user_info = parser(user_input)
+
+        user_data = get_user_name(user_info)
+
+        result = command(user_data)
+        print(result)
+
+        
 
 
 if __name__ == "__main__":
