@@ -1,4 +1,4 @@
-
+from exceptions import BirthdayException
 from datetime import datetime
 class Birthday:
     def __init__(self, value):
@@ -14,4 +14,5 @@ class Birthday:
         try:
             self._value = datetime.strptime(value, "%Y/%m/%d")
         except:
-            raise ValueError("Format birthday must be YYYY/mm/dd")
+            raise BirthdayException
+            

@@ -1,5 +1,5 @@
 import re
-
+from exceptions import PhoneMustBeNumber
 class Phone:
     def __init__(self, value):
         self.value = value
@@ -12,5 +12,5 @@ class Phone:
     @value.setter
     def value(self, value):
         if not re.match(r'^\d{11}$', value):
-            raise ValueError
+            raise PhoneMustBeNumber
         self._value = value
