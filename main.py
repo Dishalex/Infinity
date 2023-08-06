@@ -19,7 +19,8 @@ def input_error(func):
     return wrapper
 
 
-
+def parser_data(args):
+    pass
 
 adressbook = AdressBook()
 @input_error
