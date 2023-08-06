@@ -3,12 +3,13 @@ from record import Record
 from name import Name
 from phone import Phone
 from birthday import Birthday
-from adressbook import AdressBook
+from address_book import AdressBook
 from rich import print
 from rich.table import Table
 from exceptions import PhoneMustBeNumber, BirthdayException, EmailException
 I = 1
 
+address_book = AdressBook()
 
 def address_book_commands():
     table_address_book = Table(
@@ -20,14 +21,13 @@ def address_book_commands():
     table_address_book.add_column('BIRTHDAY', justify='left')
     table_address_book.add_column('DESCRIPTION', justify='left')
     table_address_book.add_row('hello', '-', '-', '-', '-', 'Greeting')
-    table_address_book.add_row(
-        'add', 'Any name ', 'Phone number *', 'E-mail', 'Birthday', 'Add new contact')
+    table_address_book.add_row('add', 'Any name ', 'Phone number *', 'E-mail', 'YYYY/MM/DD *', 'Add new contact')
     # table.add_row('append', 'Existing name', 'Additional phone number *', '-', 'Append phone number')
     # table.add_row('delete', 'Existing name', 'Phone to delete *', '-', 'Delete phone number')
     # table.add_row('birthday', 'Existing name', '-', 'YYYY-MM-DD', 'Add birthday')
     # table.add_row('days to birthday', 'Existing name', '-', '-', 'Sow days to birthday')
     # table.add_row('phone', 'Existing name', '-', '-', 'Getting phone number')
-    # table.add_row('show all / show all + N', '-', '-', '-', 'Getting Address Book/ N - quantity of records on the page')
+    table_address_book.add_row('show all / show all + N', '-', '-', '-', ' ', 'Getting Address Book/ N - quantity of records on the page')
     # table.add_row('search + sample', '-', '-', '-', 'searching <<< sumple >>> in address book')
     table_address_book.add_row(
         'good bye / close / exit', '-', '-', '-', '-', 'Exit')
@@ -58,6 +58,52 @@ def help_command(args):
     print (address_book_commands())
     return note_book_commands()
 
+def show_all_command(args):
+
+    if len(address_book.data) == 0:
+        return '\nAddress Book is empty!'
+    
+    n = 10
+    k = 1
+    if len(args[0]) > 0:
+        try:
+            n = int(args[0])
+        except ValueError:
+            print (f'\nEnterd number <<< {args[0]} >>> of pages does not represent a valid integer!\nDefault number of records N = {n} is used')
+
+    for block in address_book.iterator(n):
+        
+        table = Table(title=f'\nADDRESS BOOK page {k}')
+        table.add_column('Name', justify='left')
+        table.add_column("Phone number", justify="left")
+        table.add_column("Birthday", justify="left")
+        for item in block:
+            table.add_row(str(item[0]), str(item[1]), str(item[2]) )
+        print (table)
+        k += 1
+
+    return "\nEnd of address book."
+
+def search_command(args):
+    sample = args[0]
+
+    if args[0] == '':
+        return '\nMissing sample for search!'
+    
+    found_records_list = address_book.search_sample(sample)
+
+    if len(found_records_list) > 0:
+                
+        table = Table(title=f'\nALL FOUND RECORDS ACCORDING TO SAMPLE <<< {sample} >>>')
+        table.add_column('Name', justify='left')
+        table.add_column("Phone number", justify="left")
+        table.add_column("Birthday", justify="left")
+        for item in found_records_list:
+            table.add_row(item['name'], item['phones'], item['birthday'] )
+        return table
+    else:
+        return f'\nThere is now any record according to sample <<< {sample} >>>'
+
 
 def input_error(func):
     def wrapper(*args, **kwargs):
@@ -78,8 +124,6 @@ def input_error(func):
     return wrapper
 
 
-adressbook = AdressBook()
-
 def file_error(func):
     def wrapper():
         try:
@@ -92,7 +136,7 @@ def file_error(func):
 
 @file_error
 def load_data_from_file():
-    AdressBook.load_data_from_file(adressbook)
+    AdressBook.load_data_from_file(address_book)
     return f"load from file OK"
 
 
@@ -110,8 +154,8 @@ def add_record(args):
         phone = Phone(args[1][1])
         record = Record(name, birthday, phone)
 
-    adressbook.add_record(record)
-    for rec in adressbook.data.values():
+    address_book.add_record(record)
+    for rec in address_book.data.values():
         print(rec)
 
 
@@ -121,8 +165,8 @@ def add_phone_command(args):
     if args[0]:
         name = args[0]
 
-        record = adressbook[name]
-        if name in adressbook.data:
+        record = address_book[name]
+        if name in address_book.data:
             phone = Phone(args[1][0])
             record.add_phone(phone)
     else:
@@ -136,13 +180,13 @@ def change_phone_command(args):
         name = args[0]
         old_phone, new_phone = args[1]
 
-        if name not in adressbook.data:
+        if name not in address_book.data:
             return f"You dont have contact with name {name}"
 
-        record = adressbook[name]
+        record = address_book[name]
 
         record.change_phone(old_phone, new_phone)
-        for rec in adressbook.data.values():
+        for rec in address_book.data.values():
             print(rec)
     else:
         raise ValueError
@@ -155,7 +199,7 @@ def add_birthday_command(args):
         raise ValueError
     name = args[0]
     birthday = Birthday(args[1][0])
-    record = adressbook[name]
+    record = address_book[name]
     record.add_birthday(birthday)
     return f"Birthday to contact {name} has been added"
 
@@ -166,18 +210,20 @@ def delete_phone_command(args):
         raise ValueError
     name = args[0]
     phone = Phone(args[1][0])
-    record = adressbook[name]
+    record = address_book[name]
     record.delete_phone(phone)
     return f"For contact {name} phone {phone.value} has been deleted"
 
 COMMANDS = {
-    add_record: ('add record', 'append'),
+    add_record: ('add record', 'append', 'add'),
     change_phone_command: ("change phone", ),
     add_phone_command: ("ap", "add phone",),
     exit_command: ('good bye', 'close', 'exit'),
     help_command: ('help',),
     delete_phone_command: ("delete phone", "del phone"),
     add_birthday_command: ("ab", "add birthday",),
+    show_all_command: ('show all',),
+    search_command: ('search',)
 
     # phone_comman: ('phone',),
     # delete_phone_command: ('delete',),
@@ -228,12 +274,12 @@ def parser(user_input: str):
 
 def main():
 
-    load_adb = load_data_from_file()
-    print(load_adb)
+    # load_adb = load_data_from_file()
+    # print(load_adb)
 
     global I
     if I == 1:
-        # address_book.load_data()
+        address_book.load_data()
         print(address_book_commands())
         print(note_book_commands())
         I += 1
