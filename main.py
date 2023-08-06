@@ -4,8 +4,25 @@ from name import Name
 from phone import Phone
 from birthday import Birthday
 from adressbook import AdressBook
-adressbook = AdressBook()
 
+
+def input_error(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except KeyError:
+            return "Error: Invalid command. Please try again."
+        except ValueError:
+            return "Error: Invalid input format. Please try again."
+        except IndexError:
+            return "Error: Contact not found. Please try again."
+    return wrapper
+
+
+
+
+adressbook = AdressBook()
+@input_error
 def add_record(args):
     if args[0]:
         name = Name(args[0])
@@ -18,15 +35,43 @@ def add_record(args):
         phone = Phone(args[1][1])
         record = Record(name, birthday, phone)
     
-    print(args)
-
-    
     adressbook.add_record(record)
-    print(adressbook.data)
+    for rec in adressbook.data.values():
+        print(rec)
 
+
+@input_error
+def add_p(args):
+    name = args[0]
+    
+    record = adressbook[name]
+    if name in adressbook.data:
+        phone = Phone(args[1][0])
+        record.add_phone(phone)
+    return f"A number {phone.value} has been added to a contact {name}"
+
+
+@input_error
+def change_p(args):
+    name = args[0]
+    old_phone, new_phone = args[1]
+
+    if name not in adressbook.data:
+        return f"You dont have contact with name {name}"
+    
+    record = adressbook[name]
+    
+    record.change_phone(old_phone, new_phone)
+    for rec in adressbook.data.values():
+        print(rec)
+    return f"The phone number {old_phone} for contact {name} has been changed to {new_phone}."
+    
 COMMANDS = {
     add_record: ('add', 'append'),
-    # phone_command: ('phone',),
+    change_p: ("change phone", ),
+    add_p: ("p"),
+
+    # phone_comman: ('phone',),
     # delete_phone_command: ('delete',),
     # exit_command: ('good bye', 'close', 'exit'),
     # show_all_command: ('show all',),
@@ -80,7 +125,7 @@ def parser(user_input: str):
     user_info = None
     return command, user_info
 
-
+@input_error
 def main():
 
 
