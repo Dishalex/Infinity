@@ -80,6 +80,21 @@ def input_error(func):
 
 adressbook = AdressBook()
 
+def file_error(func):
+    def wrapper():
+        try:
+            result = func()
+        except FileNotFoundError:
+            adressbook = AdressBook()
+            return f"Not file, create new adressbook"
+        return result
+    return wrapper
+
+@file_error
+def load_data_from_file():
+    AdressBook.load_data_from_file(adressbook)
+    return f"load from file OK"
+
 
 @input_error
 def add_record(args):
@@ -212,6 +227,9 @@ def parser(user_input: str):
 
 
 def main():
+
+    load_adb = load_data_from_file()
+    print(load_adb)
 
     global I
     if I == 1:
