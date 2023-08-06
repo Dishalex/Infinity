@@ -4,6 +4,44 @@ from name import Name
 from phone import Phone
 from birthday import Birthday
 from adressbook import AdressBook
+from rich import print
+from rich.table import Table
+
+I = 1
+
+def address_book_commands():
+    table_address_book = Table(title='\nALL COMMANDS FOR ADDRESS BOOK:\nImportant!!! All entered data must be devided by gap! Phone number must have 10 or 12 digits!\n * - optional paramiters')
+    table_address_book.add_column('COMMAND', justify='left')
+    table_address_book.add_column('NAME', justify='left')
+    table_address_book.add_column('PHONE NUMBER', justify='letf')
+    table_address_book.add_column('E-MAIL', justify='left')
+    table_address_book.add_column('BIRTHDAY', justify='left')
+    table_address_book.add_column('DESCRIPTION', justify='left')
+    table_address_book.add_row('hello', '-', '-', '-', '-', 'Greeting')
+    table_address_book.add_row('add', 'Any name ', 'Phone number *', 'E-mail', 'Birthday', 'Add new contact')
+    #table.add_row('append', 'Existing name', 'Additional phone number *', '-', 'Append phone number') 
+    #table.add_row('delete', 'Existing name', 'Phone to delete *', '-', 'Delete phone number')
+    #table.add_row('birthday', 'Existing name', '-', 'YYYY-MM-DD', 'Add birthday')
+    #table.add_row('days to birthday', 'Existing name', '-', '-', 'Sow days to birthday')
+    #table.add_row('phone', 'Existing name', '-', '-', 'Getting phone number')
+    #table.add_row('show all / show all + N', '-', '-', '-', 'Getting Address Book/ N - quantity of records on the page')
+    #table.add_row('search + sample', '-', '-', '-', 'searching <<< sumple >>> in address book')
+    table_address_book.add_row('good bye / close / exit', '-', '-', '-', '-', 'Exit')
+    table_address_book.add_row('help', '-', '-', '-', '-', 'Printing table of commands')
+    return table_address_book
+
+
+def note_book_commands():
+    table_note_book = Table(title='\nALL COMMANDS FOR NOTE BOOK:')
+    table_note_book.add_column('COMMAND', justify='left')
+    table_note_book.add_column('NUNMBER', justify='left')
+    table_note_book.add_column('DATA', justify='letf')
+    table_note_book.add_column('TAGS', justify='letf')
+    table_note_book.add_column('NOTE', justify='left')
+    table_note_book.add_column('DESCRIPTION', justify='left')
+    table_note_book.add_row('add nout', '-', '-', 'Tags', 'Note')
+
+    return table_note_book
 
 
 def input_error(func):
@@ -19,9 +57,8 @@ def input_error(func):
     return wrapper
 
 
-
-
 adressbook = AdressBook()
+
 @input_error
 def add_record(args):
     if args[0]:
@@ -69,7 +106,7 @@ def change_p(args):
 COMMANDS = {
     add_record: ('add', 'append'),
     change_p: ("change phone", ),
-    add_p: ("p"),
+    add_p: ("p",),
 
     # phone_comman: ('phone',),
     # delete_phone_command: ('delete',),
@@ -111,7 +148,6 @@ def get_user_name(user_info: str) -> tuple:
     return name, user_data
 
 
-
 def parser(user_input: str):
     user_input_lower = user_input.lower()
     for command, kwds in COMMANDS.items():
@@ -127,6 +163,13 @@ def parser(user_input: str):
 
 @input_error
 def main():
+
+    global I
+    if I == 1:
+        #address_book.load_data()
+        print (address_book_commands())
+        print (note_book_commands())
+        I += 1
 
 
     while True:
