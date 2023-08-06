@@ -44,6 +44,16 @@ def note_book_commands():
     return table_note_book
 
 
+def exit_command(*args):
+    #address_book.save_data()
+    return '\nGood bye! Have a nice day!\n'
+
+
+def help_command(*args):
+    print (address_book_commands())
+    return note_book_commands()
+
+
 def input_error(func):
     def wrapper(*args, **kwargs):
         try:
@@ -107,6 +117,8 @@ COMMANDS = {
     add_record: ('add', 'append'),
     change_p: ("change phone", ),
     add_p: ("p",),
+    exit_command: ('good bye', 'close', 'exit'),
+    help_command: ('help',),
 
     # phone_comman: ('phone',),
     # delete_phone_command: ('delete',),
@@ -137,6 +149,8 @@ def get_user_name(user_info: str) -> tuple:
                 print(f'\nName <<< {i} >>> is not correct! Try again!')
                 user_data = ('', '')
                 return user_data
+        else:
+            break
 
     user_data = user_data.split()
     if len(name_list) >= 1:
@@ -172,18 +186,36 @@ def main():
         I += 1
 
 
+    # originale code:
+    # while True:
+
+    #     user_input = (input(f'\nEnter command, please!\n\n>>>')).strip()
+
+    #     command, user_info = parser(user_input)
+
+    #     user_data = get_user_name(user_info)
+
+    #     result = command(user_data)
+    #     print(result)
+
+    # corrected code for commands without arguments:
+
+
     while True:
 
         user_input = (input(f'\nEnter command, please!\n\n>>>')).strip()
 
         command, user_info = parser(user_input)
-
-        user_data = get_user_name(user_info)
-
-        result = command(user_data)
-        print(result)
-
         
+        if user_info == "":
+            result = command()
+        else:
+            user_data = get_user_name(user_info)
+            result = command(user_data)
+            
+        print(result)
+        if command == exit_command:
+            break
 
 
 if __name__ == "__main__":
