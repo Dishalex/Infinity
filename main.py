@@ -6,7 +6,7 @@ from birthday import Birthday
 from adressbook import AdressBook
 from rich import print
 from rich.table import Table
-
+from exceptions import PhoneMustBeNumber, BirthdayException, EmailException
 I = 1
 
 
@@ -69,6 +69,12 @@ def input_error(func):
             return "Error: Invalid input format. Please try again."
         except IndexError:
             return "Error: Contact not found. Please try again."
+        except PhoneMustBeNumber:
+            return "Number must be 11 digits"
+        except BirthdayException:
+            return "Format birthday must be YYYY/mm/dd"
+        except EmailException:
+            return "incorrect email"
     return wrapper
 
 
