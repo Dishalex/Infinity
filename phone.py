@@ -14,3 +14,9 @@ class Phone:
         if not re.match(r'^\d{11}$', value):
             raise PhoneMustBeNumber
         self._value = value
+
+    def __str__(self) -> str:
+        return self.value
+    
+    def __repr__(self) -> str:
+        return str(self)
