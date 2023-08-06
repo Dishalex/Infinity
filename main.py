@@ -49,12 +49,12 @@ def note_book_commands():
     return table_note_book
 
 
-def exit_command(*args):
+def exit_command(args):
     #address_book.save_data()
     return '\nGood bye! Have a nice day!\n'
 
 
-def help_command(*args):
+def help_command(args):
     print (address_book_commands())
     return note_book_commands()
 
@@ -182,17 +182,18 @@ def main():
         print(note_book_commands())
         I += 1
 
+    while True:
+        user_input = (input(f'\nEnter command, please!\n\n>>>')).strip()
 
-    #     user_input = (input(f'\nEnter command, please!\n\n>>>')).strip()
+        command, user_info = parser(user_input)
 
-    #     command, user_info = parser(user_input)
+        user_data = get_user_name(user_info)
 
-    #     user_data = get_user_name(user_info)
+        result = command(user_data)
+        print(result)
 
-    #     result = command(user_data)
-    #     print(result)
-
-
+        if command == exit_command:
+            break
 
 if __name__ == "__main__":
     main()
