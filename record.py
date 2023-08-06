@@ -3,20 +3,25 @@ from phone import Phone
 from birthday import Birthday
 from email import Email
 
+
+
+
+
+
+
+
 class Record:
-    def __init__(self, name: Name, birthday: Birthday = None, phones: Phone = None, emails: Email = None):
+    def __init__(self, name: Name, birthday: Birthday = None, phone: Phone = None, email: Email = None):
         self.name = name
         self.birthday = birthday
         self.phones = []
         self.emails = []
 
-        if phones:
-            for phone in phones:
-                self.phones.append(phone)
+        if phone:
+            self.phones.append(phone)
 
-        if emails:
-            for email in emails:
-                self.emails.append(email)
+        if email:
+            self.emails.append(email)
 
     def add_phone(self, phone: Phone):
         self.phones.append(phone)
@@ -36,10 +41,19 @@ class Record:
     def add_email(self, email: Email):
         self.emails.append(email)
 
-    def change_email(self, old_email: str, new_email: str):
+    def change_email(self, old_email, new_email):
         for email in self.emails:
             if email.value == old_email:
                 email.value = new_email
 
     def delete_email(self, email: Email):
         self.emails = [e for e in self.emails if e != email]
+
+    def __str__(self):
+        output = ""
+        phones = [
+            phone.value for phone in self.phones]
+        phones = ", ".join(phones) if phones else "N/A"
+        birthday = self.birthday.value if self.birthday else "N/A"
+        output += f"{self.name.value}: Phones:{phones}, Birthday: {birthday}\n"
+        return output
