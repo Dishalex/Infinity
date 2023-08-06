@@ -149,6 +149,8 @@ def get_user_name(user_info: str) -> tuple:
                 print(f'\nName <<< {i} >>> is not correct! Try again!')
                 user_data = ('', '')
                 return user_data
+        else:
+            break
 
     user_data = user_data.split()
     if len(name_list) >= 1:
@@ -197,6 +199,8 @@ def main():
     #     print(result)
 
     # corrected code for commands without arguments:
+
+
     while True:
 
         user_input = (input(f'\nEnter command, please!\n\n>>>')).strip()
