@@ -25,11 +25,6 @@ class Email:
             raise EmailException
 
 
-
-
-
-
-
 class Record:
     def __init__(self, name: Name, birthday: Birthday = None, phone: Phone = None, email: Email = None):
         self.name = name
@@ -47,7 +42,7 @@ class Record:
         self.phones.append(phone)
 
     def delete_phone(self, phone: Phone):
-        self.phones = [p for p in self.phones if p != phone]
+        self.phones = [p for p in self.phones if p.value != phone.value]
 
     def change_phone(self, old_phone, new_phone):
         for phone in self.phones:

@@ -101,7 +101,7 @@ def add_record(args):
 
 
 @input_error
-def add_p(args):
+def add_phone_command(args):
     name = args[0]
 
     record = adressbook[name]
@@ -112,7 +112,7 @@ def add_p(args):
 
 
 @input_error
-def change_p(args):
+def change_phone_command(args):
     name = args[0]
     old_phone, new_phone = args[1]
 
@@ -127,13 +127,33 @@ def change_p(args):
     return f"The phone number {old_phone} for contact {name} has been changed to {new_phone}."
 
 
+def add_birthday_command(args):
+    if len(args) < 2:
+        raise ValueError
+    name = args[0]
+    birthday = Birthday(args[1][0])
+    record = adressbook[name]
+    record.add_birthday(birthday)
+    return f"Birthday to contact {name} has been added"
+
+def delete_phone_command(args):
+    if len(args) < 2:
+        raise ValueError
+    name = args[0]
+    phone = Phone(args[1][0])
+    record = adressbook[name]
+    record.delete_phone(phone)
+    return f"For contact {name} phone {phone.value} has been deleted"
+
 COMMANDS = {
     add_record: ('add', 'append'),
-    change_p: ("change phone", ),
-    add_p: ("p",),
+    change_phone_command: ("change phone", ),
+    add_phone_command: ("ap", "add phone",),
     exit_command: ('good bye', 'close', 'exit'),
     help_command: ('help',),
-
+    delete_phone_command: ("delete phone", "del phone"),
+    add_birthday_command: ("ab" "add birthday",),
+    
     # phone_comman: ('phone',),
     # delete_phone_command: ('delete',),
     # exit_command: ('good bye', 'close', 'exit'),
