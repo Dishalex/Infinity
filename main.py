@@ -217,8 +217,6 @@ def main():
         if command == exit_command:
             break
 
-        
-
 
 if __name__ == "__main__":
     main()
