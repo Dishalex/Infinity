@@ -83,6 +83,7 @@ adressbook = AdressBook()
 
 @input_error
 def add_record(args):
+    #print(args)
     if args[0]:
         name = Name(args[0])
         record = Record(name)
@@ -152,13 +153,13 @@ def get_user_name(user_info: str) -> tuple:
     name = ''
 
     if user_info:
-        while True:
+        while user_info_list:
             word = user_info_list[0]
             match_name = re.match(regex_name, word)
             if match_name and len(match_name.group()) == len(word):
                 name = name + word + ' '
                 user_info_list.remove(word)
-                print(user_info_list)
+                #print(user_info_list)
             else:
                 break
     return name.strip(), user_info_list
@@ -178,7 +179,7 @@ def parser(user_input: str):
     return command, user_info
 
 
-@input_error
+
 def main():
 
     global I
