@@ -149,27 +149,6 @@ def load_data_from_file():
     return f"load from file OK"
 
 
-def add_command(args: tuple[str]) -> str:
-    name = Name(args[0])
-    phone = Phone(args[1])
-    rec: Record = address_book.get(str(name))
-    if rec:
-        return rec.add_phone(phone)
-    try:
-        args[2]
-        try:
-            b_day = Birthday(args[2])
-            rec = Record(name, phone, b_day)
-            return address_book.add_record(rec)
-        except Exception as err:
-            return err
-    except Exception:
-        pass
-    rec = Record(name, phone)
-
-    return address_book.add_record(rec)
-
-
 @input_error
 def add_record(args: tuple[str]) -> str:
     name = Name(args[0])
