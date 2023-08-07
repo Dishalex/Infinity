@@ -15,28 +15,26 @@ address_book = AdressBook()
 
 def address_book_commands():
     table_address_book = Table(
-        title='\nALL COMMANDS FOR ADDRESS BOOK:\nImportant!!! All entered data must be devided by gap! Phone number must have 10 or 12 digits!\n * - optional paramiters')
-    table_address_book.add_column('COMMAND', justify='left')
-    table_address_book.add_column('NAME', justify='left')
-    table_address_book.add_column('PHONE NUMBER', justify='letf')
-    table_address_book.add_column('E-MAIL', justify='left')
-    table_address_book.add_column('BIRTHDAY', justify='left')
-    table_address_book.add_column('DESCRIPTION', justify='left')
-    table_address_book.add_row('hello', '-', '-', '-', '-', 'Greeting')
-    table_address_book.add_row(
-        'add', 'Any name ', 'Phone number *', 'E-mail', 'YYYY/MM/DD *', 'Add new contact')
-    # table.add_row('append', 'Existing name', 'Additional phone number *', '-', 'Append phone number')
-    # table.add_row('delete', 'Existing name', 'Phone to delete *', '-', 'Delete phone number')
-    # table.add_row('birthday', 'Existing name', '-', 'YYYY-MM-DD', 'Add birthday')
+        title="\nALL COMMANDS FOR ADDRESS BOOK:\nImportant!!! All entered data must be devided by gap! Phone number must have 10 or 12 digits!\n * - optional paramiters")
+    table_address_book.add_column("COMMAND", justify="left")
+    table_address_book.add_column("NAME", justify="left")
+    table_address_book.add_column("PHONE NUMBER", justify="left")
+    table_address_book.add_column("EMAIL", justify="left")
+    table_address_book.add_column("BIRTHDAY", justify="left")
+    table_address_book.add_column("ADDRESS", justify="left")
+    table_address_book.add_column("DESCRIPTION", justify="left")
+    table_address_book.add_row("hello / hi", "-", "-", "-", "-", "-", "Greeting")
+    table_address_book.add_row("add / add record", "Any name", "Phone number *", "Email *", "YYYY/MM/DD *", "-", "Add new contact")
+    table_address_book.add_row("add phone / append / ap", "Existing name", "Additional phone number", "-", "-", "-","Add phone numbere")
+    table_address_book.add_row("change phone / cph", "Existing name", "Old phone number + new phone number", "-", "-", "-","Change phone numbere")
+    table_address_book.add_row("delete phone / del phone / dph", 'Existing name', 'Phone nunber to delete *', "-", "-", "-", "Delete phone number")
+    table_address_book.add_row("add birthday / ab", 'Existing name', "-", "-", "YYYY-MM-DD", "-", "Add birthday")
     # table.add_row('days to birthday', 'Existing name', '-', '-', 'Sow days to birthday')
     # table.add_row('phone', 'Existing name', '-', '-', 'Getting phone number')
-    table_address_book.add_row('show all / show all + N', '-', '-', '-',
-                               ' ', 'Getting Address Book/ N - quantity of records on the page')
-    # table.add_row('search + sample', '-', '-', '-', 'searching <<< sumple >>> in address book')
-    table_address_book.add_row(
-        'good bye / close / exit', '-', '-', '-', '-', 'Exit')
-    table_address_book.add_row(
-        'help', '-', '-', '-', '-', 'Printing table of commands')
+    table_address_book.add_row('show all / show all + N', '-', '-', '-', '-', 'Getting Address Book/ N - quantity of records on the page')
+    table_address_book.add_row('search + sample', '-', '-', '-', '-', 'searching <<< sumple >>> in address book')
+    table_address_book.add_row('good bye / close / exit', '-', '-', '-', '-', 'Exit')
+    table_address_book.add_row('help', '-', '-', '-', '-', 'Printing table of commands')
     return table_address_book
 
 
@@ -54,7 +52,7 @@ def note_book_commands():
 
 
 def exit_command(args):
-    # address_book.save_data()
+    address_book.save_data()
     return '\nGood bye! Have a nice day!\n'
 
 
