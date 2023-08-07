@@ -247,6 +247,50 @@ def delete_phone_command(args):
     return f"For contact {name} phone {phone.value} has been deleted"
 
 
+@input_error
+def add_email_command(args):
+    if args[0]:
+        name = args[0]
+
+        record = address_book[name]
+        if name in address_book.data:
+            email = Email(args[1][0])
+            record.add_email(email)
+    else:
+        raise ValueError
+    return f"A email {email.value} has been added to a contact {name}."
+
+
+@input_error
+def change_email_command(args):
+    if args[0]:
+        name = args[0]
+        old_email, new_email = args[1]
+
+        if name not in address_book.data:
+            return f"You dont have contact with name {name}"
+
+        record = address_book[name]
+
+        record.change_email(old_email, new_email)
+        
+    else:
+        raise ValueError
+    
+    return f"The email {old_email} for contact {name} has been changed to {new_email}."
+
+
+@input_error
+def delete_email_command(args):
+    if len(args) < 2:
+        raise ValueError
+    name = args[0]
+    email = Email(args[1][0])
+    record = address_book[name]
+    record.delete_email(email)
+    return f"For contact {name} email {email.value} has been deleted"
+
+
 def no_command(args) -> str:
     return 'Unknown command'
 
@@ -256,7 +300,7 @@ def hello_command(args) -> str:
 
 
 COMMANDS = {
-    add_record: ('add record', 'append', 'add'),
+    add_record: ('add record', 'append',),
     change_phone_command: ("change phone", ),
     add_phone_command: ("ap", "add phone",),
     exit_command: ('good bye', 'close', 'exit'),
@@ -266,6 +310,10 @@ COMMANDS = {
     show_all_command: ('show all', 'all'),
     search_command: ('search',),
     hello_command: ('hello', 'hi'),
+    add_email_command: ("add email", "ae"),
+    delete_email_command: ("delete email", "de"),
+    change_email_command: ("change email", "ce"),
+    
     # phone_comman: ('phone',),
     # delete_phone_command: ('delete',),
     # exit_command: ('good bye', 'close', 'exit'),
