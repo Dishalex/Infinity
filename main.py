@@ -1,6 +1,6 @@
 import re
 from record import Record
-from record import Email
+from email_class import Email
 from name import Name, Name_Error
 from phone import Phone
 from birthday import Birthday
@@ -337,3 +337,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
