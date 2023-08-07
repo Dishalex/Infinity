@@ -1,4 +1,4 @@
-# [Project](Project) Infinity (Team 8)
+# Project Infinity (Team 8)
 
 Welcome to the Python CLI Assistant! This command-line program helps you manage your contact book, notes, and more with simple and intuitive commands.
 
