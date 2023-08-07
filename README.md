@@ -21,8 +21,8 @@ To get started, clone this repository and follow the installation instructions i
 
 ## Commands
 
-| Alias | Command Syntax          | Description                                      |
-|-------|-------------------------|--------------------------------------------------|
+| Alias | Command Syntax          | Description                                     |
+|-------|-------------------------|-------------------------------------------------|
 | hi    | hello                   | Show a friendly greeting.                       |
 | h     | help                    | Display a help message with available commands. |
 | a     | add <name>              | Add a new contact record.                       |
@@ -56,11 +56,6 @@ For more details and examples, please refer to the [documentation](./Documentati
  ```bash
  git clone https://github.com/your-username/python-cli-assistant.git
  cd python-cli-assistant
-
-    Install any dependencies (if required):
-
-    bash
-
 ```
 2. Install dependancies:
 
@@ -71,7 +66,7 @@ pip install -r requirements.txt
 3. Run the Python CLI Assistant:
 
 ```bash
-    python assistant.py
+python assistant.py
 ```
 
 ## License
