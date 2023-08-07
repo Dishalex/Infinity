@@ -23,18 +23,28 @@ def address_book_commands():
     table_address_book.add_column("BIRTHDAY", justify="left")
     table_address_book.add_column("ADDRESS", justify="left")
     table_address_book.add_column("DESCRIPTION", justify="left")
-    table_address_book.add_row("hello / hi", "-", "-", "-", "-", "-", "Greeting")
-    table_address_book.add_row("add / add record", "Any name", "Phone number *", "Email *", "YYYY/MM/DD *", "-", "Add new contact")
-    table_address_book.add_row("add phone / append / ap", "Existing name", "Additional phone number", "-", "-", "-","Add phone numbere")
-    table_address_book.add_row("change phone / cph", "Existing name", "Old phone number + new phone number", "-", "-", "-","Change phone numbere")
-    table_address_book.add_row("delete phone / del phone / dph", 'Existing name', 'Phone nunber to delete *', "-", "-", "-", "Delete phone number")
-    table_address_book.add_row("add birthday / ab", 'Existing name', "-", "-", "YYYY-MM-DD", "-", "Add birthday")
+    table_address_book.add_row(
+        "hello / hi", "-", "-", "-", "-", "-", "Greeting")
+    table_address_book.add_row("add / add record", "Any name", "Phone number *",
+                               "Email *", "YYYY/MM/DD *", "-", "Add new contact")
+    table_address_book.add_row("add phone / append / ap", "Existing name",
+                               "Additional phone number", "-", "-", "-", "Add phone numbere")
+    table_address_book.add_row("change phone / cph", "Existing name",
+                               "Old phone number + new phone number", "-", "-", "-", "Change phone numbere")
+    table_address_book.add_row("delete phone / del phone / dph", 'Existing name',
+                               'Phone nunber to delete *', "-", "-", "-", "Delete phone number")
+    table_address_book.add_row(
+        "add birthday / ab", 'Existing name', "-", "-", "YYYY-MM-DD", "-", "Add birthday")
     # table.add_row('days to birthday', 'Existing name', '-', '-', 'Sow days to birthday')
     # table.add_row('phone', 'Existing name', '-', '-', 'Getting phone number')
-    table_address_book.add_row('show all / show all + N', '-', '-', '-', '-', 'Getting Address Book/ N - quantity of records on the page')
-    table_address_book.add_row('search + sample', '-', '-', '-', '-', 'searching <<< sumple >>> in address book')
-    table_address_book.add_row('good bye / close / exit', '-', '-', '-', '-', 'Exit')
-    table_address_book.add_row('help', '-', '-', '-', '-', 'Printing table of commands')
+    table_address_book.add_row('show all / show all + N', '-', '-', '-',
+                               '-', 'Getting Address Book/ N - quantity of records on the page')
+    table_address_book.add_row(
+        'search + sample', '-', '-', '-', '-', 'searching <<< sumple >>> in address book')
+    table_address_book.add_row(
+        'good bye / close / exit', '-', '-', '-', '-', 'Exit')
+    table_address_book.add_row(
+        'help', '-', '-', '-', '-', 'Printing table of commands')
     return table_address_book
 
 
@@ -79,18 +89,22 @@ def show_all_command(args):
 
     for block in address_book.iterator(n):
 
-        table = Table(title=f'\nADDRESS BOOK page {k}')
-        table.add_column('Name', justify='left')
+        table = Table(title=f"\nADDRESS BOOK page {k}")
+        table.add_column("Name", justify="left")
         table.add_column("Phone number", justify="left")
         table.add_column("Email", justify="left")
         table.add_column("Birthday", justify="left")
         table.add_column("Address", justify="left")
         for item in block:
-            table.add_row(str(item[0]), str(item[1]), str(item[2]), str(item[3]), str(item[4]))
+            table.add_row(str(item[0]), str(item[1]), str(
+                item[2]), str(item[3]), str(item[4]))
         print(table)
         k += 1
 
-    return "\nEnd of address book."
+        if len(block) == n:
+            input ("\nTo see next page press any key:\n>>>")
+
+    return "End of address book."
 
 
 def search_command(args):
@@ -126,9 +140,9 @@ def input_error(func):
         except IndexError:
             return "Error: Contact not found. Please try again."
         except PhoneMustBeNumber:
-            return "Phone must have 10 or 12 digites!"
+            return "Phone must have 10 or 12 digits!"
         except BirthdayException:
-            return "Format birthday must be YYYY/mm/dd"
+            return "Format birthday must be YYYY/MM/DD"
         except EmailException:
             return "incorrect email"
         except Name_Error:
@@ -156,45 +170,30 @@ def input_error(func):
 @input_error
 def add_record(args: tuple[str]) -> str:
     name = Name(args[0])
-    errors = [PhoneMustBeNumber, BirthdayException, EmailException]
     birthday = phone = email = None
     for i in args[1]:
         try:
             phone = Phone(i)
-            if PhoneMustBeNumber in errors:
-                errors.remove(PhoneMustBeNumber)
             continue
         except Exception:
             pass
 
         try:
             email = Email(i)
-            if EmailException in errors:
-                errors.remove(EmailException)
             continue
         except Exception:
             pass
 
         try:
             birthday = Birthday(i)
-            if BirthdayException in errors:
-                errors.remove(BirthdayException)
             continue
         except Exception:
             pass
 
-    if len(errors) == 3:
-        return f"No data to add for name {str(name)}"
-    else:
-        record = Record(name, birthday, phone, email)
-
-#    rec: Record = address_book.get(str(name))  # тут має бути частина коду для перевірки наявності імені і додавання номеру, мейлу та дати народження
-#    if rec:
-#        return rec.add_phone(phone)
-
-    address_book.add_record(record)
-    for rec in address_book.data.values():
-        print(rec)
+    rec: Record = address_book.get(str(name))
+    if rec:
+        return f'Record with name {str(name)} is already in address book'
+    return address_book.add_record(Record(name, birthday, phone, email))
 
 
 @input_error
