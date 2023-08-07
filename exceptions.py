@@ -8,3 +8,7 @@ class BirthdayException(Exception):
 
 class EmailException(Exception):
     pass
+
+
+class Name_Error(Exception):
+    pass
