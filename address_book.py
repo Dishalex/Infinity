@@ -84,6 +84,8 @@ class AdressBook(UserDict):
             user_phones = record.phones
             user_emails_list = []
             user_emails = record.emails
+            #user_address = record.address
+            user_address = 'N/A'
 
             if record.phones == None or record.phones == [] :
                 phones_str = 'N/A'
@@ -96,10 +98,10 @@ class AdressBook(UserDict):
                 emails_str = 'N/A'
             else:
                 for email in user_emails:
-                    user_phones_list.append(phone.value)
+                    user_emails_list.append(email.value)
                 emails_str = ' ,'.join(user_emails_list).strip()                 
                 
-            user_data = [user_name, phones_str, emails_str, user_birthday]
+            user_data = [user_name, phones_str, emails_str, user_birthday, user_address]
             data_list.append(user_data)
             count += 1
             if count >= n:

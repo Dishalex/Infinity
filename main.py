@@ -68,9 +68,11 @@ def show_all_command(args):
 
     n = 10
     k = 1
-    if len(args[0]) > 0:
+
+    if len(args[1]) > 0:
+
         try:
-            n = int(args[0])
+            n = int(args[1][0])
         except ValueError:
             print(
                 f'\nEnterd number <<< {args[0]} >>> of pages does not represent a valid integer!\nDefault number of records N = {n} is used')
@@ -82,8 +84,9 @@ def show_all_command(args):
         table.add_column("Phone number", justify="left")
         table.add_column("Email", justify="left")
         table.add_column("Birthday", justify="left")
+        table.add_column("Address", justify="left")
         for item in block:
-            table.add_row(str(item[0]), str(item[1]), str(item[2]), str(item[3]))
+            table.add_row(str(item[0]), str(item[1]), str(item[2]), str(item[3]), str(item[4]))
         print(table)
         k += 1
 
@@ -123,7 +126,7 @@ def input_error(func):
         except IndexError:
             return "Error: Contact not found. Please try again."
         except PhoneMustBeNumber:
-            return "Number must be 11 digits"
+            return "Phone must have 10 or 12 digites!"
         except BirthdayException:
             return "Format birthday must be YYYY/mm/dd"
         except EmailException:
