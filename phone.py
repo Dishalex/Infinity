@@ -5,12 +5,13 @@ from sanytize import sanitize_phone_number
 
 class Phone:
     def __init__(self, value):
+        self.__value = None
         self.value = value
-        self._value = value
+        
     
     @property
     def value(self):
-         return self._value
+         return self.__value
     
     #original:
     
@@ -24,12 +25,16 @@ class Phone:
     def value(self, value):
         sanytized_ph = sanitize_phone_number(value)
         if sanytized_ph == None:
-            print ('25',f'\nPhone number {value} is hot correct!\nPhone must have 10 or 12 digites!\n')
+            print (f'\nPhone number {value} is hot correct!\nPhone must have 10 or 12 digites!\n')
             raise PhoneMustBeNumber      
-        self._value = sanytized_ph
+        self.__value = sanytized_ph
         
     def __str__(self) -> str:
         return self.value
     
     def __repr__(self) -> str:
         return str(self)
+    
+if __name__ == "__main__":
+    phone = Phone("+3805512-12-123")
+    print (phone.value)

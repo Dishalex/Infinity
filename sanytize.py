@@ -20,11 +20,13 @@ def sanitize_phone_number(phone):
             .replace(")", "")
             .replace("-", "")
             .replace(" ", "")
+            .replace("/", "")
     )
     return new_phone
 
 if __name__ == '__main__':
-    phone = "38050-111-22-2"
+    phone = '1990/12/12'
+    #phone = "38050-111-22-2"
     #phone = "    +38(050)1233234"
     #phone = "     0503451234"
     #phone = ' 1234567891111234'
