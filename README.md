@@ -71,3 +71,10 @@ python assistant.py
 ## License
 
 This project is licensed under the MIT License.
+
+## Contributors
+- [Oleksandr Dyshliuk)](https://github.com/Dishalex)
+- [Dmytro Kruhlov](https://github.com/Dmytro-Kruhlov)
+- [Michael Ivanov](https://github.com/MikeIV2007)
+- [Artem Dorofeev](https://github.com/artem-dorofeev)
+- [Igor Yevtushenko](https://github.com/II-777)
