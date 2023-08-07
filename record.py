@@ -52,5 +52,5 @@ class Record:
         emails = [email.value for email in self.emails]
         emails = ", ".join(emails) if emails else "N/A"
         birthday = self.birthday.value if self.birthday else "N/A"
-        output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {birthday}\n"
+        output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {str(birthday)}\n"
         return output
