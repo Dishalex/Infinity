@@ -47,9 +47,10 @@ class Record:
 
     def __str__(self):
         output = ""
-        phones = [
-            phone.value for phone in self.phones]
+        phones = [phone.value for phone in self.phones]
         phones = ", ".join(phones) if phones else "N/A"
+        emails = [email.value for email in self.emails]
+        emails = ", ".join(emails) if emails else "N/A"
         birthday = self.birthday.value if self.birthday else "N/A"
-        output += f"{self.name.value}: Phones:{phones}, Birthday: {birthday}\n"
+        output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {birthday}\n"
         return output

@@ -7,7 +7,7 @@ from birthday import Birthday
 from address_book import AdressBook
 from rich import print
 from rich.table import Table
-from exceptions import PhoneMustBeNumber, BirthdayException, EmailException
+from exceptions import PhoneMustBeNumber, BirthdayException, EmailException, Name_Error
 I = 1
 
 address_book = AdressBook()
@@ -129,6 +129,8 @@ def input_error(func):
             return "Format birthday must be YYYY/mm/dd"
         except EmailException:
             return "incorrect email"
+        except Name_Error:
+            return ("Enter name at least 3 symbols")
     return wrapper
 
 
@@ -152,15 +154,14 @@ def input_error(func):
 @input_error
 def add_record(args: tuple[str]) -> str:
     name = Name(args[0])
-    # це потрібно для реалізації окремого додавання елементів, якщо контакт існує
     errors = [PhoneMustBeNumber, BirthdayException, EmailException]
     birthday = phone = email = None
     for i in args[1]:
         try:
             phone = Phone(i)
-
             if PhoneMustBeNumber in errors:
                 errors.remove(PhoneMustBeNumber)
+            continue
         except Exception:
             pass
 
@@ -168,6 +169,7 @@ def add_record(args: tuple[str]) -> str:
             email = Email(i)
             if EmailException in errors:
                 errors.remove(EmailException)
+            continue
         except Exception:
             pass
 
@@ -175,6 +177,7 @@ def add_record(args: tuple[str]) -> str:
             birthday = Birthday(i)
             if BirthdayException in errors:
                 errors.remove(BirthdayException)
+            continue
         except Exception:
             pass
 
@@ -338,5 +341,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

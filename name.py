@@ -1,6 +1,4 @@
-class Name_Error(Exception):
-    pass
-
+from exceptions import Name_Error
 
 class Name:
     def __init__(self, value):
@@ -19,5 +17,5 @@ class Name:
     @value.setter
     def value(self, value):
         if len(value) < 3:
-            raise Name_Error("Name must be not less then 3 symbols")
+            raise Name_Error
         self.__value = value
