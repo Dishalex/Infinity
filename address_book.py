@@ -36,10 +36,10 @@ class AdressBook(UserDict):
         with open('address_book.bin', "wb") as file:
             pickle.dump(self.data, file)
 
-    def add_record(self, record: Record):
-        self.data[str(record.name)] = record
-        self.save_data()
-        return f"\nContact <<< {record} >>> added successfully!"
+    # def add_record(self, record: Record):
+    #     self.data[str(record.name)] = record
+    #     self.save_data()
+    #     return f"\nContact <<< {record} >>> added successfully!"
     
     def search_sample(self, sample: str):
         found_records_list = []
@@ -77,20 +77,29 @@ class AdressBook(UserDict):
             if record.birthday != None:
                 user_birthday = record.birthday.value
             else:
-                user_birthday = 'None'
+                user_birthday = 'N/A'
 
-            phones_str = 'None'
+            #phones_str = 'N/A'
             user_phones_list = []
-            user_phones= record.phones
+            user_phones = record.phones
+            user_emails_list = []
+            user_emails = record.emails
 
             if record.phones == None or record.phones == [] :
-                phones_str = 'None'
+                phones_str = 'N/A'
             else:
                 for phone in user_phones:
                     user_phones_list.append(phone.value)
-                phones_str = ' ,'.join(user_phones_list).strip()                
+                phones_str = ' ,'.join(user_phones_list).strip()
+
+            if record.emails == None or record.emails == [] :
+                emails_str = 'N/A'
+            else:
+                for email in user_emails:
+                    user_phones_list.append(phone.value)
+                emails_str = ' ,'.join(user_emails_list).strip()                 
                 
-            user_data = [user_name, phones_str, user_birthday]
+            user_data = [user_name, phones_str, emails_str, user_birthday]
             data_list.append(user_data)
             count += 1
             if count >= n:

@@ -46,7 +46,7 @@ def note_book_commands():
     table_note_book.add_column('TAGS', justify='letf')
     table_note_book.add_column('NOTE', justify='left')
     table_note_book.add_column('DESCRIPTION', justify='left')
-    table_note_book.add_row('add nout', '-', '-', 'Tags', 'Note')
+    table_note_book.add_row('add note', '-', '-', 'Tags', 'Note')
 
     return table_note_book
 
@@ -80,9 +80,10 @@ def show_all_command(args):
         table = Table(title=f'\nADDRESS BOOK page {k}')
         table.add_column('Name', justify='left')
         table.add_column("Phone number", justify="left")
+        table.add_column("Email", justify="left")
         table.add_column("Birthday", justify="left")
         for item in block:
-            table.add_row(str(item[0]), str(item[1]), str(item[2]))
+            table.add_row(str(item[0]), str(item[1]), str(item[2]), str(item[3]))
         print(table)
         k += 1
 
