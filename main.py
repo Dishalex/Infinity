@@ -1,6 +1,6 @@
 import re
 from record import Record
-from record import Email
+from email_class import Email
 from name import Name, Name_Error
 from phone import Phone
 from birthday import Birthday
@@ -338,43 +338,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# show all
-# help
-# phone
-# add Bill
-# ADD Bill +380(67)333-43-5 # not correct
-# ADD Bill +380673334354
-# Append Bill +380673331111
-# add
-# BirthDaY Bill 2002-05-32 #not correct
-# BirthDaY Bill 2002-05-30
-# Days To Birthday Bill
-# DeLete Bill +380(67)333-43-54
-# ADD Bill Jonson +380(67)333-43-57
-# Append Bill Jonson +380(67)333-99-88
-# PhoNE Bill Jonson
-# BirthDaY Bill Jonson 2002-05-30
-# DeleTe Bill Jonson +380(67)333-43-5
-# +380(67)282-8-313
-# CHange Mike Jonn +380(67)111-41-77
-# delete Mike Jonn +380(67)111-41-77
-# PHONE Mike Jonn +380(67)111-41-77
-# CHange Bill Jonson +380(67)111-41-77
-# PHONE Bill
-# phone Bill +380(67)333-43-54
-# 12m3m4n
-# 12me3m3m 123m3mm2
-# ADD Jill Bonson +380(67)333-43-54
-# PhOnE Jill Bonson +380(67)333-43-54
-# ADD Jill +380(67)333-43-54
-# append Jill +380(67)222-44-55
-# Иванов Иван Иванович +380(67)222-33-55
-# append Иванов Иван Иванович +380(67)999-1-777
-# phone Иванов Иван Иванович 
-# delete Иванов Иван Иванович +380(67)222-33-55
-# dfsadfads asdgfas ref asdf     TypeError
-# Jgfdksaflf Sdfjldsf; Asdfk;;lsdff Jldsf;sf';; sdff ; jldsf;sF';;
-# add mike 123123-12-3
-# delete mike 123123-12-3
-# phone mike 123123-12-3
-# birthday mike 1972-05-21
+
