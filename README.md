@@ -44,7 +44,6 @@ To get started, clone this repository and follow the installation instructions i
 | at    | add tags <name>         | Add tags to a note.                             |
 | dt    | delete tags <name>      | Delete all tags from a note.                    |
 | et    | edit tags <name>        | Edit tags in a default text editor.             |
-|       |                         |                                                 |
 
 ## Exmaples
 
@@ -54,8 +53,8 @@ For more details and examples, please refer to the [documentation](./Documentati
 
 1. Clone the repository:
  ```bash
- git clone https://github.com/your-username/python-cli-assistant.git
- cd python-cli-assistant
+git clone https://github.com/your-username/python-cli-assistant.git
+cd python-cli-assistant
 ```
 2. Install dependancies:
 
