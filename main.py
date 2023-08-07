@@ -132,21 +132,21 @@ def input_error(func):
     return wrapper
 
 
-def file_error(func):
-    def wrapper():
-        try:
-            result = func()
-        except FileNotFoundError:
-            adressbook = AdressBook()
-            return f"Not file, create new adressbook"
-        return result
-    return wrapper
+# def file_error(func):
+#     def wrapper():
+#         try:
+#             result = func()
+#         except FileNotFoundError:
+#             adressbook = AdressBook()
+#             return f"Not file, create new adressbook"
+#         return result
+#     return wrapper
 
 
-@file_error
-def load_data_from_file():
-    AdressBook.load_data_from_file(address_book)
-    return f"load from file OK"
+# @file_error
+# def load_data_from_file():
+#     AdressBook.load_data_from_file(address_book)
+#     return f"load from file OK"
 
 
 @input_error
@@ -158,6 +158,7 @@ def add_record(args: tuple[str]) -> str:
     for i in args[1]:
         try:
             phone = Phone(i)
+
             if PhoneMustBeNumber in errors:
                 errors.remove(PhoneMustBeNumber)
         except Exception:
