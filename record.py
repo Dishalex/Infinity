@@ -60,18 +60,15 @@ class Record:
         for email in self.emails:
             if email.value == old_email:
                 email.value = new_email
-                break
 
     def delete_email(self, email: Email):
-        self.emails = [e for e in self.emails if e.value != email.value]
+        self.emails = [e for e in self.emails if e != email]
 
     def __str__(self):
         output = ""
         phones = [
             phone.value for phone in self.phones]
-        emails = [email.value for email in self.emails]
-        emails = ", ".join(emails) if emails else "N/A"
         phones = ", ".join(phones) if phones else "N/A"
         birthday = self.birthday.value if self.birthday else "N/A"
-        output += f"{self.name.value}: Phones:{phones}, Birthday: {birthday}, Emails: {emails}\n"
+        output += f"{self.name.value}: Phones:{phones}, Birthday: {birthday}\n"
         return output
