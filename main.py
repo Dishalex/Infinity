@@ -324,7 +324,7 @@ def hello_command(args) -> str:
 
 
 COMMANDS = {
-    add_record: ("add record", "add"),
+    add_record: ("add record",),
     change_phone_command: ("change phone",),
     add_phone_command: ("add phone",),
     exit_command: ("good bye", "close", "exit",),
