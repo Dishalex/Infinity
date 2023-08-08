@@ -46,12 +46,12 @@ class AdressBook(UserDict):
             else:
                 emails = 'N/A'
 
-            if rec.address != None:
-                address = str(rec.address.value)
+            if rec.user_address != None:
+                user_address = str(rec.user_address)
             else:
-                address = "N/A"
+                user_address = "N/A"
 
-            user_data_str = f"{name} {phones} {emails} {birthday} {address}"
+            user_data_str = f"{name} {phones} {emails} {birthday} {user_address}"
 
             if sample.lower() in user_data_str.lower():
                 user_data_dict = {}
@@ -59,7 +59,7 @@ class AdressBook(UserDict):
                 user_data_dict["phones"] = phones
                 user_data_dict["birthday"] = birthday
                 user_data_dict["emails"] = emails
-                user_data_dict["address"] = address
+                user_data_dict["address"] = user_address
                 found_records_list.append(user_data_dict)
             else:
                 continue
@@ -77,8 +77,8 @@ class AdressBook(UserDict):
             else:
                 user_birthday = 'N/A'
 
-            if record.address != None:
-                user_address = record.address.value
+            if record.user_address != None:
+                user_address = record.user_address.value
             else:
                 user_address = 'N/A'
 

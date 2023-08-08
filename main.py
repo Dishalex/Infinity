@@ -343,17 +343,25 @@ def hello_command(args) -> str:
 
 @input_error
 def add_address(args):
-    name = args[0]
+    name = Name(args[0])
     rec: Record = address_book.get(str(name))
-    if rec:
-        print(rec)
+    if not rec:
+        return f'No record with name {name}'
+    return rec.add_address(Address(args[2]))
 
-    address = Address(args[2])
+
+@input_error
+def delete_address_command(args):
+    name = Name(args[0])
+    rec: Record = address_book.get(str(name))
+    if not rec:
+        return f'No record with name {name}'
+    return rec.delete_address()
 
 
 COMMANDS = {
     add_record: ("add record",),
-    add_address: ("add address",),
+    add_address: ("add address", "change address"),
     change_phone_command: ("change phone",),
     add_phone_command: ("add phone",),
     exit_command: ("good bye", "close", "exit",),
@@ -367,6 +375,7 @@ COMMANDS = {
     change_email_command: ("change email",),
     delete_email_command: ("delete email",),
     delete_record_command: ("delete record", "remove"),
+    delete_address_command: ("delete address", "remove address"),
     days_to_birthday_command: ("days to birthday", "dtb",)
     # delete_phone_command: ('delete',),
     # exit_command: ('good bye', 'close', 'exit'),
@@ -384,7 +393,7 @@ def get_user_name(user_info: str) -> tuple:
     user_address = ''
     address_separator = ':'
     if address_separator in user_info:
-        data = user_info.split(':')
+        data = user_info.split(address_separator)
         user_info_list = data[0].strip().split()
         user_address = data[1].strip()
     else:

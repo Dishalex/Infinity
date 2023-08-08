@@ -7,12 +7,12 @@ from address_class import Address
 
 
 class Record:
-    def __init__(self, name: Name, birthday: Birthday = None, phone: Phone = None, email: Email = None, address: Address = None):
+    def __init__(self, name: Name, birthday: Birthday = None, phone: Phone = None, email: Email = None, user_address: Address = None):
         self.name = name
         self.birthday = birthday
         self.phones = []
         self.emails = []
-        self.address = address
+        self.user_address = user_address
 
         if phone:
             self.phones.append(phone)
@@ -59,13 +59,28 @@ class Record:
     def delete_email(self, email: Email):
         self.emails = [e for e in self.emails if e.value != email.value]
 
-    def add_address(self, address: Address):
-        self.address = address
-
-    def change_address(self, old_address: Address, new_address: Address):
-        if address.value == old_address.value:
-            address.value = new_address.value
+    def add_address(self, user_address: Address):
+        if self.user_address:
+            old_user_address = self.user_address
+            self.user_address = user_address
+            return f'Address of contact "{self.name}" was changed from "{old_user_address}" to "{user_address}"'
+        self.user_address = user_address
+        return f'Address "{user_address}" was add to contact "{self.name}"'
 
     def delete_address(self):
-        if self.address:
-            self.address = ''
+        if self.user_address:
+            address = self.user_address
+            self.user_address = None
+            return f'Address "{address}" for contact "{self.name}" was deleted'
+        return f'Contact "{self.name}" has no address to delete'
+
+    def __str__(self):
+        output = ""
+        phones = [phone.value for phone in self.phones]
+        phones = ", ".join(phones) if phones else "N/A"
+        emails = [email.value for email in self.emails]
+        emails = ", ".join(emails) if emails else "N/A"
+        birthday = self.birthday.value if self.birthday else "N/A"
+        address = self.user_address.value
+        output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {str(birthday)}, Address: {address}"
+        return output
