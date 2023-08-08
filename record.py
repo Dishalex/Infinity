@@ -69,14 +69,3 @@ class Record:
     def delete_address(self):
         if self.address:
             self.address = ''
-
-    def __str__(self):
-        output = ""
-        phones = [phone.value for phone in self.phones]
-        phones = ", ".join(phones) if phones else "N/A"
-        emails = [email.value for email in self.emails]
-        emails = ", ".join(emails) if emails else "N/A"
-        birthday = self.birthday.value if self.birthday else "N/A"
-        address = self.address
-        output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {str(birthday)}, Address: {address}"
-        return output
