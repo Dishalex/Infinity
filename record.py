@@ -2,8 +2,8 @@ from name import Name
 from phone import Phone
 from birthday import Birthday
 from email_class import Email
-from exceptions import EmailException
-import re
+
+
 
 
 class Record:
@@ -25,10 +25,10 @@ class Record:
     def delete_phone(self, phone: Phone):
         self.phones = [p for p in self.phones if p.value != phone.value]
 
-    def change_phone(self, old_phone, new_phone):
+    def change_phone(self, old_phone: Phone, new_phone: Phone):
         for phone in self.phones:
-            if phone.value == old_phone:
-                phone.value = new_phone
+            if phone.value == old_phone.value:
+                phone.value = new_phone.value
                 break
 
     def add_birthday(self, birthday: Birthday):
@@ -37,13 +37,13 @@ class Record:
     def add_email(self, email: Email):
         self.emails.append(email)
 
-    def change_email(self, old_email, new_email):
+    def change_email(self, old_email: Email, new_email: Email):
         for email in self.emails:
-            if email.value == old_email:
-                email.value = new_email
+            if email.value == old_email.value:
+                email.value = new_email.value
 
     def delete_email(self, email: Email):
-        self.emails = [e for e in self.emails if e != email]
+        self.emails = [e for e in self.emails if e.value != email.value]
 
     def __str__(self):
         output = ""
