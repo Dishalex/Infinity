@@ -45,7 +45,7 @@ To get started, clone this repository and follow the installation instructions i
 | dt    | delete tags <name>      | Delete all tags from a note.                    |
 | et    | edit tags <name>        | Edit tags in a default text editor.             |
 
-## Exmaples
+## Examples
 
 For more details and examples, please refer to the [documentation](./Documentation/).
 
