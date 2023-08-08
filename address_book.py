@@ -6,22 +6,13 @@ class AdressBook(UserDict):
     
     def add_record(self, record: Record):
         self.data[record.name.value] = record
-        #AdressBook.write_data_to_file(self.data)
         self.save_data()
         return f"\nContact <<< {record} >>> added successfully!"
 
-
-    # def write_data_to_file(self):
-    #     file_name = "adress_book.bin"
-    #     with open(file_name, "wb") as f:
-    #         pickle.dump(self, f)
-    #     return f"Data save to file - {file_name}"
-
-    # def load_data_from_file(self):
-    #     file_name = "adress_book.bin"
-    #     with open(file_name, "rb") as f:
-    #         self.data = pickle.load(f)
-    #     return f"Data load from file - {file_name}"
+    def delete_record(self, record: Record):
+        del self.data[record.name.value]
+        self.save_data()
+        return f"\nContact <<< {record.name} >>> removed successfully!"
     
     def load_data(self):
         try:
@@ -118,3 +109,6 @@ class AdressBook(UserDict):
 
     def __str__(self) -> str:
         return "\n".join(str(r) for r in self.data.values())
+    
+if __name__ == "__main__":
+    ...
