@@ -2,6 +2,7 @@ from name import Name
 from phone import Phone
 from birthday import Birthday
 from email_class import Email
+from datetime import datetime
 
 
 
@@ -33,6 +34,21 @@ class Record:
 
     def add_birthday(self, birthday: Birthday):
         self.birthday = birthday
+
+
+    def check_cont_birthday(self, days):
+        if self.birthday:
+            birth = self.birthday.value
+            current_date = datetime.now()
+            next_birth = datetime(current_date.year, birth.month, birth.day)
+            if next_birth < current_date:
+                next_birth = datetime(current_date.year + 1,
+                                      birth.month, birth.day)
+            day_for_birth = next_birth - current_date
+            if (int(day_for_birth.days)+1) < days:
+                return day_for_birth.days + 1
+        return None
+
 
     def add_email(self, email: Email):
         self.emails.append(email)
