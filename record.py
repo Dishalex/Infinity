@@ -3,16 +3,16 @@ from phone import Phone
 from birthday import Birthday
 from email_class import Email
 from datetime import datetime
-
-
+from address_class import Address
 
 
 class Record:
-    def __init__(self, name: Name, birthday: Birthday = None, phone: Phone = None, email: Email = None):
+    def __init__(self, name: Name, birthday: Birthday = None, phone: Phone = None, email: Email = None, address: Address = None):
         self.name = name
         self.birthday = birthday
         self.phones = []
         self.emails = []
+        self.address = address
 
         if phone:
             self.phones.append(phone)
@@ -35,7 +35,6 @@ class Record:
     def add_birthday(self, birthday: Birthday):
         self.birthday = birthday
 
-
     def check_cont_birthday(self, days):
         if self.birthday:
             birth = self.birthday.value
@@ -49,7 +48,6 @@ class Record:
                 return day_for_birth.days + 1
         return None
 
-
     def add_email(self, email: Email):
         self.emails.append(email)
 
@@ -61,6 +59,17 @@ class Record:
     def delete_email(self, email: Email):
         self.emails = [e for e in self.emails if e.value != email.value]
 
+    def add_address(self, address: Address):
+        self.address = address
+
+    def change_address(self, old_address: Address, new_address: Address):
+        if address.value == old_address.value:
+            address.value = new_address.value
+
+    def delete_address(self):
+        if self.address:
+            self.address = ''
+
     def __str__(self):
         output = ""
         phones = [phone.value for phone in self.phones]
@@ -68,5 +77,6 @@ class Record:
         emails = [email.value for email in self.emails]
         emails = ", ".join(emails) if emails else "N/A"
         birthday = self.birthday.value if self.birthday else "N/A"
-        output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {str(birthday)}\n"
+        address = self.address
+        output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {str(birthday)}, Address: {address}"
         return output
