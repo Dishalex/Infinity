@@ -32,7 +32,7 @@ To get started, clone this repository and follow the installation instructions i
 | d     | delete <name>  <data>   | Delete specific data from a contact.            |
 | s     | search <name>           | Search for contact record(s).                   |
 | sa    | show all                | Show all contact records in a browsing mode.    |
-| sp    | show page <page_num>    | Show contact records by page.                   |
+| gp    | show page <page_num>    | Go to page # of the adress book.                |
 | sp    | show phones <name>      | List phones associated with a contact.          |
 | se    | show emails <name>      | List emails associated with a contact.          |
 | sb    | show birthday <name>    | Show birthday of a contact.                     |
@@ -45,7 +45,7 @@ To get started, clone this repository and follow the installation instructions i
 | dt    | delete tags <name>      | Delete all tags from a note.                    |
 | et    | edit tags <name>        | Edit tags in a default text editor.             |
 
-## Exmaples
+## Examples
 
 For more details and examples, please refer to the [documentation](./Documentation/).
 
