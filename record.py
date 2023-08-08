@@ -6,7 +6,6 @@ from datetime import datetime
 from address_class import Address
 
 
-
 class Record:
     def __init__(self, name: Name, birthday: Birthday = None, phone: Phone = None, email: Email = None, user_address: Address = None):
         self.name = name
@@ -60,7 +59,6 @@ class Record:
     def delete_email(self, email: Email):
         self.emails = [e for e in self.emails if e.value != email.value]
 
-
     def add_address(self, user_address: Address):
         if self.user_address:
             old_user_address = self.user_address
@@ -83,7 +81,6 @@ class Record:
         emails = [email.value for email in self.emails]
         emails = ", ".join(emails) if emails else "N/A"
         birthday = self.birthday.value if self.birthday else "N/A"
-        address = self.user_address.value
+        address = self.user_address
         output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {str(birthday)}, Address: {address}"
         return output
-
