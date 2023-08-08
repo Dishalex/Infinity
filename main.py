@@ -209,58 +209,112 @@ def add_record(args: tuple[str]) -> str:
 @input_error
 def add_phone_command(args):
 
-    if args[0]:
+    if len(args) == 2 and len(args[1]) == 1:
         name = args[0]
-
         record = address_book[name]
-        if name in address_book.data:
-            phone = Phone(args[1][0])
-            record.add_phone(phone)
+        if name not in address_book.data:
+            return f"You dont have contact with name {name}"
+        phone = Phone(args[1][0])
+        record.add_phone(phone)
+        return f"A number {phone.value} has been added to a contact {name}"
+        
     else:
         raise ValueError
-    return f"A number {phone.value} has been added to a contact {name}"
+    
 
 
 @input_error
 def change_phone_command(args):
-    if args[0]:
+
+    if len(args) == 2 and len(args[1]) == 2:
         name = args[0]
         old_phone, new_phone = args[1]
-
         if name not in address_book.data:
             return f"You dont have contact with name {name}"
-
-        record = address_book[name]
-
-        record.change_phone(old_phone, new_phone)
-        for rec in address_book.data.values():
-            print(rec)
+        o_phone = Phone(old_phone)
+        n_phone = Phone(new_phone)
+        record = address_book[name]  
+        record.change_phone(o_phone, n_phone)
+        return f"The phone number {old_phone} for contact {name} has been changed to {new_phone}."
     else:
         raise ValueError
-    return f"The phone number {old_phone} for contact {name} has been changed to {new_phone}."
+    
 
 
 @input_error
 def add_birthday_command(args):
-    if len(args) < 2:
+    if len(args) == 2 and len(args[1]) == 1:
+        name = args[0]
+        if name not in address_book.data:
+            return f"You dont have contact with name {name}"
+        birthday = Birthday(args[1][0])
+        record = address_book[name]
+        if record.birthday:
+            return f"Contact with name {name} already has a date of birth"
+        record.add_birthday(birthday)
+        return f"Birthday to contact {name} has been added"
+    else:
         raise ValueError
-    name = args[0]
-    birthday = Birthday(args[1][0])
-    record = address_book[name]
-    record.add_birthday(birthday)
-    return f"Birthday to contact {name} has been added"
-
 
 @input_error
 def delete_phone_command(args):
-    if len(args) < 2:
+    if len(args) == 2 and len(args[1]) == 1:
+        name = args[0]
+        if name not in address_book.data:
+            return f"You dont have contact with name {name}"
+        phone = Phone(args[1][0])
+        record = address_book[name]
+        record.delete_phone(phone)
+        return f"For contact {name} phone {phone.value} has been deleted"
+        
+    else:
         raise ValueError
-    name = args[0]
-    phone = Phone(args[1][0])
-    record = address_book[name]
-    record.delete_phone(phone)
-    return f"For contact {name} phone {phone.value} has been deleted"
 
+
+@input_error
+def add_email_command(args):
+    if len(args) == 2 and len(args[1]) == 1:
+        name = args[0]
+        record = address_book[name]
+        if name not in address_book.data:
+            return f"You dont have contact with name {name}"
+        email = Email(args[1][0])
+        record.add_email(email)
+        return f"Email for contact {name} has been added"
+    else:
+        raise ValueError
+    
+
+@input_error
+def change_email_command(args):
+    if len(args) == 2 and len(args[1]) == 2:
+        name = args[0]
+        old_email, new_email = args[1]
+        if name not in address_book.data:
+            return f"You dont have contact with name {name}"
+        o_email = Email(old_email)
+        n_email = Email(new_email)
+        record = address_book[name]
+        record.change_email(o_email, n_email)
+        return f"The email {old_email} for contact {name} has been changed to {new_email}."
+    else:
+        raise ValueError
+
+
+@input_error
+def delete_email_command(args):
+    if len(args) == 2 and len(args[1]) == 1:
+        name = args[0]
+        if name not in address_book.data:
+            return f"You dont have contact with name {name}"
+        email = Email(args[1][0])
+        record = address_book[name]
+        record.delete_email(email)
+        return f"For contact {name} email {email.value} has been deleted"
+
+    else:
+        raise ValueError
+    
 
 def no_command(args) -> str:
     return 'Unknown command'
@@ -271,16 +325,19 @@ def hello_command(args) -> str:
 
 
 COMMANDS = {
-    add_record: ('add record', 'append', 'add'),
-    change_phone_command: ("change phone", ),
-    add_phone_command: ("ap", "add phone",),
-    exit_command: ('good bye', 'close', 'exit'),
+    add_record: ('add record',),
+    change_phone_command: ('change phone',),
+    add_phone_command: ('add phone',),
+    exit_command: ('good bye', 'close', 'exit',),
     help_command: ('help',),
-    delete_phone_command: ("delete phone", "del phone"),
-    add_birthday_command: ("ab", "add birthday",),
-    show_all_command: ('show all', 'all'),
+    delete_phone_command: ('delete phone',),
+    add_birthday_command: ("add birthday",),
+    show_all_command: ('show all',),
     search_command: ('search',),
-    hello_command: ('hello', 'hi'),
+    hello_command: ('hello', 'hi',),
+    add_email_command: ('add email',),
+    change_email_command: ('change email',),
+    delete_email_command: ('delete email',)
     # phone_comman: ('phone',),
     # delete_phone_command: ('delete',),
     # exit_command: ('good bye', 'close', 'exit'),
