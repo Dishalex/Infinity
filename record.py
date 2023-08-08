@@ -5,8 +5,6 @@ from email_class import Email
 from datetime import datetime
 
 
-
-
 class Record:
     def __init__(self, name: Name, birthday: Birthday = None, phone: Phone = None, email: Email = None):
         self.name = name
@@ -61,12 +59,4 @@ class Record:
     def delete_email(self, email: Email):
         self.emails = [e for e in self.emails if e.value != email.value]
 
-    def __str__(self):
-        output = ""
-        phones = [phone.value for phone in self.phones]
-        phones = ", ".join(phones) if phones else "N/A"
-        emails = [email.value for email in self.emails]
-        emails = ", ".join(emails) if emails else "N/A"
-        birthday = self.birthday.value if self.birthday else "N/A"
-        output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {str(birthday)}\n"
-        return output
+    
