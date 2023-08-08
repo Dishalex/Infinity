@@ -32,14 +32,8 @@ class AdressBook(UserDict):
             print ('\nAddress book is empty!')
     
     def save_data(self):
-  
         with open('address_book.bin', "wb") as file:
             pickle.dump(self.data, file)
-
-    # def add_record(self, record: Record):
-    #     self.data[str(record.name)] = record
-    #     self.save_data()
-    #     return f"\nContact <<< {record} >>> added successfully!"
     
     def search_sample(self, sample: str):
         found_records_list = []
@@ -48,20 +42,29 @@ class AdressBook(UserDict):
             if rec.phones != None and rec.phones != []:
                 phones = ' '.join(str(p) for p in rec.phones)
             else:
-                phones = 'None'
+                phones = 'N/A'
             
             if rec.birthday != None:
                 birthday  = str(rec.birthday.value)
             else:
-                birthday = 'None'
+                birthday = 'N/A'
 
-            user_data_str = f"{name} {phones} {birthday}"
+            if rec.emails != None and rec.emails != []:
+                emails = ' '.join(str(p) for p in rec.emails)
+            else:
+                emails = 'N/A'
+
+            address = "N/A"
+            
+            user_data_str = f"{name} {phones} {emails} {birthday} {address}"
  
             if sample.lower() in user_data_str.lower():
                 user_data_dict = {}
-                user_data_dict['name'] = name
-                user_data_dict['phones'] = phones
-                user_data_dict['birthday'] = birthday
+                user_data_dict["name"] = name
+                user_data_dict["phones"] = phones
+                user_data_dict["birthday"] = birthday
+                user_data_dict["emails"] = emails
+                user_data_dict["address"] = address
                 found_records_list.append(user_data_dict)
             else:
                 continue
