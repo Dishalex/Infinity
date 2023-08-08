@@ -157,6 +157,8 @@ def input_error(func):
             return "incorrect email"
         except Name_Error:
             return ("Enter name at least 3 symbols")
+        except TypeError:
+            return "Format birthday must be YYYY/MM/DD"
     return wrapper
 
 
@@ -255,6 +257,19 @@ def add_birthday_command(args):
     else:
         raise ValueError
 
+
+@input_error
+def days_to_birthday_command(args):
+    day = int(args[1][0])
+    list_bd = ''
+    for key, value in address_book.items():
+        rec = address_book.get(str(key))
+        result = rec.check_cont_birthday(day)
+        if result:
+            list_bd += f'Contact {key}: birthday through {result} days \n'
+    return list_bd.strip()
+
+
 @input_error
 def delete_phone_command(args):
     if len(args) == 2 and len(args[1]) == 1:
@@ -337,13 +352,13 @@ COMMANDS = {
     add_email_command: ("add email",),
     change_email_command: ("change email",),
     delete_email_command: ("delete email",),
-    delete_record_command: ("delete record", "remove")
+    delete_record_command: ("delete record", "remove"),
+    days_to_birthday_command: ("days to birthday", "dtb",)
     # delete_phone_command: ('delete',),
     # exit_command: ('good bye', 'close', 'exit'),
     # show_all_command: ('show all',),
     # help_command: ('help',),
     # birthday_command: ('birthday',),
-    # days_to_birthday_command: ('days to birthday',),
     # search_command: ('search',)
 }
 
