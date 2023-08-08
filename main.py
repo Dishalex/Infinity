@@ -160,23 +160,6 @@ def input_error(func):
     return wrapper
 
 
-# def file_error(func):
-#     def wrapper():
-#         try:
-#             result = func()
-#         except FileNotFoundError:
-#             adressbook = AdressBook()
-#             return f"Not file, create new adressbook"
-#         return result
-#     return wrapper
-
-
-# @file_error
-# def load_data_from_file():
-#     AdressBook.load_data_from_file(address_book)
-#     return f"load from file OK"
-
-
 @input_error
 def add_record(args: tuple[str]) -> str:
     name = Name(args[0])
@@ -204,6 +187,22 @@ def add_record(args: tuple[str]) -> str:
     if rec:
         return f'Record with name {str(name)} is already in address book'
     return address_book.add_record(Record(name, birthday, phone, email))
+
+
+@input_error
+def delete_record_command(args):
+    try:
+        name = args[0]
+        if name not in address_book.data:
+            return f"You dont have contact with name {name}"
+
+        record = address_book[name]
+        address_book.delete_record(record)
+
+        return f"\nContact {name} has been deleted successfully!"
+        
+    except:
+        raise ValueError
 
 
 @input_error
@@ -325,20 +324,20 @@ def hello_command(args) -> str:
 
 
 COMMANDS = {
-    add_record: ('add record',),
-    change_phone_command: ('change phone',),
-    add_phone_command: ('add phone',),
-    exit_command: ('good bye', 'close', 'exit',),
-    help_command: ('help',),
-    delete_phone_command: ('delete phone',),
+    add_record: ("add record", "add"),
+    change_phone_command: ("change phone",),
+    add_phone_command: ("add phone",),
+    exit_command: ("good bye", "close", "exit",),
+    help_command: ("help",),
+    delete_phone_command: ("delete phone",),
     add_birthday_command: ("add birthday",),
-    show_all_command: ('show all',),
-    search_command: ('search',),
-    hello_command: ('hello', 'hi',),
-    add_email_command: ('add email',),
-    change_email_command: ('change email',),
-    delete_email_command: ('delete email',)
-    # phone_comman: ('phone',),
+    show_all_command: ("show all",),
+    search_command: ("search",),
+    hello_command: ("hello", 'hi',),
+    add_email_command: ("add email",),
+    change_email_command: ("change email",),
+    delete_email_command: ("delete email",),
+    delete_record_command: ("delete record", "remove")
     # delete_phone_command: ('delete',),
     # exit_command: ('good bye', 'close', 'exit'),
     # show_all_command: ('show all',),
@@ -382,9 +381,6 @@ def parser(user_input: str):
 
 
 def main():
-
-    # load_adb = load_data_from_file()
-    # print(load_adb)
 
     global I
     if I == 1:
