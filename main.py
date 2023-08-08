@@ -108,25 +108,35 @@ def show_all_command(args):
 
 
 def search_command(args):
-    sample = args[0]
 
-    if args[0] == '':
-        return '\nMissing sample for search!'
+    sample_name = args[0]
+    if args[1] != []:
+        sample_data = args[1][0]
+    else:
+        sample_data = "" 
+
+    sample  = sample_name + sample_data
+
+    if sample == '':
+        return "\nMissing sample for search!"
 
     found_records_list = address_book.search_sample(sample)
 
     if len(found_records_list) > 0:
 
         table = Table(
-            title=f'\nALL FOUND RECORDS ACCORDING TO SAMPLE <<< {sample} >>>')
-        table.add_column('Name', justify='left')
+            title=f"\nALL FOUND RECORDS ACCORDING TO SAMPLE <<< {sample} >>>")
+        table.add_column("Name", justify='left')
         table.add_column("Phone number", justify="left")
+        table.add_column("Email", justify="left")
         table.add_column("Birthday", justify="left")
+        table.add_column("Address", justify="left")
+
         for item in found_records_list:
-            table.add_row(item['name'], item['phones'], item['birthday'])
+            table.add_row(item["name"], item["phones"], item["emails"], item['birthday'], item["address"])
         return table
     else:
-        return f'\nThere is now any record according to sample <<< {sample} >>>'
+        return f"\nThere is now any record according to sample <<< {sample} >>>"
 
 
 def input_error(func):
