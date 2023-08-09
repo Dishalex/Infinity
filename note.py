@@ -1,11 +1,10 @@
 import os
 import subprocess
-from typing import List
 
 NOTES_FOLDER = 'notes'
 
 
-def add_note(note_name: str, tags: List[str]) -> None:
+def add_note(note_name: str, tags: list) -> None:
     note_filename = f"{note_name}.md"
     note_path = os.path.join(NOTES_FOLDER, note_filename)
 
@@ -79,7 +78,7 @@ def show_all_notes() -> None:
         print("[-] No notes found.")
 
 
-def get_tags_from_note_file(note_path: str) -> List[str]:
+def get_tags_from_note_file(note_path: str) -> list:
     with open(note_path, 'r') as note_file:
         for line in note_file:
             if line.startswith("Tags:"):
