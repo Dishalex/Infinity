@@ -48,14 +48,14 @@ show phones John
 show emails John
 show birthday John
 days to birthday John
-
-add note test-note
-edit note test-note
-delete note test-note
-show notes
-add tags test-note
-edit tags test-note
-delete tags test-note
+            
+add note test
+add note test #test
+edit note test
+edit tags test
+show all
+search note test
+search tag test
 
 ### Input Errors:
 <*name> field is required for all commands except: 'hello', 'help', 'show all', 'show notes', 'show page'
