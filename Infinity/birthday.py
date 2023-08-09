@@ -1,4 +1,4 @@
-from exceptions import BirthdayException
+from Infinity.exceptions import BirthdayException
 from datetime import datetime, date
 
 
