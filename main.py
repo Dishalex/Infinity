@@ -28,28 +28,25 @@ def address_book_commands():
     table_address_book.add_column("BIRTHDAY", justify="left")
     table_address_book.add_column("ADDRESS", justify="left")
     table_address_book.add_column("DESCRIPTION", justify="left")
-    table_address_book.add_row(
-        "hello / hi", "-", "-", "-", "-", "-", "Greeting")
-    table_address_book.add_row("add / add record", "Any name", "Phone number *",
-                               "Email *", "YYYY/MM/DD *", "-", "Add new contact")
-    table_address_book.add_row("add phone / append / ap", "Existing name",
-                               "Additional phone number", "-", "-", "-", "Add phone numbere")
-    table_address_book.add_row("change phone / cph", "Existing name",
-                               "Old phone number + new phone number", "-", "-", "-", "Change phone numbere")
-    table_address_book.add_row("delete phone / del phone / dph", 'Existing name',
-                               'Phone nunber to delete *', "-", "-", "-", "Delete phone number")
-    table_address_book.add_row(
-        "add birthday / ab", 'Existing name', "-", "-", "YYYY-MM-DD", "-", "Add birthday")
-    # table.add_row('days to birthday', 'Existing name', '-', '-', 'Sow days to birthday')
-    # table.add_row('phone', 'Existing name', '-', '-', 'Getting phone number')
-    table_address_book.add_row('show all / show all + N', '-', '-', '-',
-                               '-', 'Getting Address Book/ N - quantity of records on the page')
-    table_address_book.add_row(
-        'search + sample', '-', '-', '-', '-', 'searching <<< sumple >>> in address book')
-    table_address_book.add_row(
-        'good bye / close / exit', '-', '-', '-', '-', 'Exit')
-    table_address_book.add_row(
-        'help', '-', '-', '-', '-', 'Printing table of commands')
+    table_address_book.add_row("hello / hi", "-", "-", "-", "-", "-", "Greeting")
+    table_address_book.add_row("add record", "Any name", "Phone number *","Email *", "YYYY-MM-DD *", ": + Address *", "Add new contact")
+    table_address_book.add_row("delete record", "Name to delete", "-", "-", "-", "-", "Delete contact")
+    table_address_book.add_row("add address / change address", "Existing name", "-","-", "-", ": + Address", "Add address")
+    table_address_book.add_row("delete address / remove address", "Existing name", "-", "-", "-", ": + Address to delete", "Delete address")
+    table_address_book.add_row("add phone", "Existing name", "Additional phone number", "-", "-", "-", "Add phone number")
+    table_address_book.add_row("change phone", "Existing name","Old phone number + new phone number", "-", "-", "-", "Change phone number")
+    table_address_book.add_row("delete phone", 'Existing name','Phone nunber to delete *', "-", "-", "-", "Delete phone number")
+    table_address_book.add_row("add birthday", 'Existing name', "-", "-", "YYYY-MM-DD", "-", "Add birthday")
+    table_address_book.add_row("days to birthday / dtb", "-", "-", "-", "-", "-", "Show contact's birthday in chosen period")
+    table_address_book.add_row("add email", 'Existing name', "-", "Email", "-", "-", "Add email")
+    table_address_book.add_row("change email", 'Existing name', "-", "Old email + new email", "-", "-", "Change email")
+    table_address_book.add_row("delete email", 'Existing name', "-", "Email to delete", "-", "-", "Delete email")
+    table_address_book.add_row("show all", "-", "-", "-", "-", "-","Getting Address Book (by default)")
+    table_address_book.add_row("show all + N", "-", "-", "-", "-", "-","Getting Address Book by N records on the page")
+    table_address_book.add_row("search + sample", "-", "-", "-", "-", "-",'searching <<< sumple >>> in address book')
+    table_address_book.add_row("sort", "-", "-", "-", "-", "-", "Sorting folder in the enetered path")
+    table_address_book.add_row("good bye / close / exit", "-", "-", "-", "-", "-", "Exit")
+    table_address_book.add_row("help", "-", "-", "-", "-", "-", "Printing table of commands")
     return table_address_book
 
 
