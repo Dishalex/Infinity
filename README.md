@@ -29,8 +29,8 @@ To get started, clone this repository and follow the installation instructions i
 |--------------------------|---------------------------------------------------------------------------|
 | hello                    | Show a friendly greeting.                                                 |
 | help                     | Display a help message with available commands.                           |
-| add <name>               | Add a new contact record.                                                 |
-| add <name> <data>        | Add details like birthday, phone, or email.                               |
+| add \<name\>               | Add a new contact record.                                                 |
+| add <name <data>        | Add details like birthday, phone, or email.                               |
 | change <name> <data>     | Change contact data.                                                      |
 | delete <name>            | Delete a contact record.                                                  |
 | delete <name>  <data>    | Delete specific data from a contact.                                      |
