@@ -37,7 +37,7 @@ class AdressBook(UserDict):
                 phones = 'N/A'
 
             if rec.birthday != None:
-                birthday = str(rec.birthday.value)
+                birthday = str(rec.birthday.value.date())
             else:
                 birthday = 'N/A'
 
@@ -73,7 +73,7 @@ class AdressBook(UserDict):
             user_data = []
             user_name = name
             if record.birthday != None:
-                user_birthday = record.birthday.value
+                user_birthday = record.birthday.value.date()
             else:
                 user_birthday = 'N/A'
 

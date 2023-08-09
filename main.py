@@ -273,7 +273,9 @@ def days_to_birthday_command(args):
         rec = address_book.get(str(key))
         result = rec.check_cont_birthday(day)
         if result:
-            list_bd += f'Contact {key}: birthday through {result} days \n'
+            list_bd += f'Contact {key}: birthday through {result[0]} days ({result[1]} years old)\n'
+    if len(list_bd) < 1:
+        list_bd = f'No birthdays in this period'
     return list_bd.strip()
 
 

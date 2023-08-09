@@ -45,7 +45,9 @@ class Record:
                                       birth.month, birth.day)
             day_for_birth = next_birth - current_date
             if (int(day_for_birth.days)+1) < days:
-                return day_for_birth.days + 1
+                day = int(day_for_birth.days) + 1
+                age = next_birth.year - birth.year
+                return day, age
         return None
 
     def add_email(self, email: Email):
@@ -80,7 +82,7 @@ class Record:
         phones = ", ".join(phones) if phones else "N/A"
         emails = [email.value for email in self.emails]
         emails = ", ".join(emails) if emails else "N/A"
-        birthday = self.birthday.value if self.birthday else "N/A"
+        birthday = self.birthday.value.date() if self.birthday else "N/A"
         address = self.user_address
         output += f"{self.name.value}: Phones:{phones}, E-mails: {emails}, Birthday: {str(birthday)}, Address: {address}"
         return output
