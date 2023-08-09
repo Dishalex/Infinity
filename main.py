@@ -216,7 +216,7 @@ def delete_record_command(args):
 @input_error
 def add_phone_command(args):
 
-    if len(args) == 2 and len(args[1]) == 1:
+    if args[0] and len(args[1]) == 1:
         name = args[0]
         record = address_book[name]
         if name not in address_book.data:
@@ -232,7 +232,7 @@ def add_phone_command(args):
 @input_error
 def change_phone_command(args):
 
-    if len(args) == 2 and len(args[1]) == 2:
+    if args[0] and len(args[1]) == 2:
         name = args[0]
         old_phone, new_phone = args[1]
         if name not in address_book.data:
@@ -248,7 +248,7 @@ def change_phone_command(args):
 
 @input_error
 def add_birthday_command(args):
-    if len(args) == 2 and len(args[1]) == 1:
+    if args[0] and len(args[1]) == 1:
         name = args[0]
         if name not in address_book.data:
             return f"You dont have contact with name {name}"
@@ -278,7 +278,7 @@ def days_to_birthday_command(args):
 
 @input_error
 def delete_phone_command(args):
-    if len(args) == 2 and len(args[1]) == 1:
+    if args[0] and len(args[1]) == 1:
         name = args[0]
         if name not in address_book.data:
             return f"You dont have contact with name {name}"
@@ -293,7 +293,7 @@ def delete_phone_command(args):
 
 @input_error
 def add_email_command(args):
-    if len(args) == 2 and len(args[1]) == 1:
+    if args[0] and len(args[1]) == 1:
         name = args[0]
         record = address_book[name]
         if name not in address_book.data:
@@ -307,7 +307,7 @@ def add_email_command(args):
 
 @input_error
 def change_email_command(args):
-    if len(args) == 2 and len(args[1]) == 2:
+    if args[0] and len(args[1]) == 2:
         name = args[0]
         old_email, new_email = args[1]
         if name not in address_book.data:
@@ -323,7 +323,7 @@ def change_email_command(args):
 
 @input_error
 def delete_email_command(args):
-    if len(args) == 2 and len(args[1]) == 1:
+    if args[0] and len(args[1]) == 1:
         name = args[0]
         if name not in address_book.data:
             return f"You dont have contact with name {name}"
@@ -337,7 +337,9 @@ def delete_email_command(args):
 
 
 def no_command(args) -> str:
-    
+    suggest = suggest_command(args[0])
+    if suggest:
+        print(f"You made a mistake, maybe you mean {suggest}? Try again")
     return 'Unknown command'
 
 
@@ -378,8 +380,8 @@ COMMANDS = {
     add_email_command: ("add email",),
     change_email_command: ("change email",),
     delete_email_command: ("delete email",),
-    delete_record_command: ("delete record", "remove"),
-    delete_address_command: ("delete address", "remove address"),
+    delete_record_command: ("delete record", "remove",),
+    delete_address_command: ("delete address", "remove address",),
     days_to_birthday_command: ("days to birthday", "dtb",),
     sort_folder_command: ("sort",)
 }
@@ -419,8 +421,7 @@ def parser(user_input: str):
                 user_info = user_input[len(kwd):].strip()
                 return command, user_info
 
-    command = no_command
-    return command, user_info
+    return no_command, user_input
 
 
 def main():

@@ -15,6 +15,8 @@ COMMANDS = [
     "add email",
     "delete email",
     "change email",
+    "delete record", "remove",
+    "days to birthday", "sort"
 ]
 
 
