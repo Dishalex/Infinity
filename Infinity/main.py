@@ -10,7 +10,7 @@ from rich import print
 from rich.table import Table
 from Infinity.exceptions import PhoneMustBeNumber, BirthdayException, EmailException, Name_Error
 from Infinity.sort_folder import sort
-from Infinity.suggest import suggest_command
+# from Infinity.suggest import suggest_command
 I = 1
 
 address_book = AdressBook()
@@ -358,9 +358,9 @@ def delete_email_command(args):
 
 
 def no_command(args) -> str:
-    suggest = suggest_command(args[0])
-    if suggest:
-        return f'You made a mistake, maybe you mean "{suggest}"? Try again'
+    # suggest = suggest_command(args[0])
+    # if suggest:
+    #     return f'You made a mistake, maybe you mean "{suggest}"? Try again'
     return 'Unknown command'
 
 
