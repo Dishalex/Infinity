@@ -1,4 +1,5 @@
-from exceptions import Name_Error
+from Infinity.exceptions import Name_Error
+
 
 class Name:
     def __init__(self, value):

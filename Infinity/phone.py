@@ -1,6 +1,6 @@
 
-from exceptions import PhoneMustBeNumber
-from sanytize import sanitize_phone_number
+from Infinity.exceptions import PhoneMustBeNumber
+from Infinity.sanytize import sanitize_phone_number
 
 
 class Phone:
@@ -24,6 +24,3 @@ class Phone:
 
     def __repr__(self) -> str:
         return str(self)
-
-
-

@@ -1,4 +1,4 @@
-from record import Record
+from Infinity.record import Record
 from collections import UserDict
 import pickle
 
