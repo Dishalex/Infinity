@@ -30,25 +30,25 @@ To get started, clone this repository and follow the installation instructions i
 | hello                    | Show a friendly greeting.                                                 |
 | help                     | Display a help message with available commands.                           |
 | add {name}               | Add a new contact record.                                                 |
-| add {name} {data}         | Add details like birthday, phone, or email.                               |
+| add {name} {data}        | Add details like birthday, phone, or email.                               |
 | change {name} {data}     | Change contact data.                                                      |
-| delete <name>            | Delete a contact record.                                                  |
-| delete <name>  <data>    | Delete specific data from a contact.                                      |
-| search <name>            | Search for contact record(s).                                             |
+| delete {name}            | Delete a contact record.                                                  |
+| delete {name}  {data}    | Delete specific data from a contact.                                      |
+| search {name}            | Search for contact record(s).                                             |
 | show all                 | Show all contact records in a browsing mode.                              |
-| show page <page_num>     | Go to page # of the adress book.                                          |
-| show phones <name>       | List phones associated with a contact.                                    |
-| show emails <name>       | List emails associated with a contact.                                    |
-| show birthday <name>     | Show birthday of a contact.                                               |
-| birthdays in <# of days> | Display all birthdays in the next # of days.                              |
+| show page {page_#}       | Go to page # of the adress book.                                          |
+| show phones {name}       | List phones associated with a contact.                                    |
+| show emails {name}       | List emails associated with a contact.                                    |
+| show birthday {name}     | Show birthday of a contact.                                               |
+| birthdays in {#_of_days} | Display all birthdays in the next # of days.                              |
 | note                     | Enter the note taking mode                                                |
 | show all                 | (in the note taking mode) Show all notes and their tags in browsing mode. |
-| add note <name>          | (in the note taking mode) Add a new note.                                 |
-| delete note <name>       | (in the note taking mode) Delete an existing note.                        |
-| edit note <name>         | (in the note taking mode) Edit an existing note in a text editor.         |
-| edit tags <name>         | (in the note taking mode) Edit tags via cli interface.                    |
-| search name <name>       | (in the note taking mode) Search for notes by name.                       |
-| search tags <name>       | (in the note taking mode) Search for notes by tag.                        |
+| add note {name} {tags}   | (in the note taking mode) Add a new note.                                 |
+| delete note {name}       | (in the note taking mode) Delete an existing note.                        |
+| edit note {name}         | (in the note taking mode) Edit an existing note in a text editor.         |
+| edit tags {name}         | (in the note taking mode) Edit tags via cli interface.                    |
+| search name {name}       | (in the note taking mode) Search for notes by name.                       |
+| search tags {name}       | (in the note taking mode) Search for notes by tag.                        |
 
 ## Examples
 
