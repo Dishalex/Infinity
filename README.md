@@ -2,6 +2,10 @@
 
 Welcome to the Python CLI Assistant! This command-line program helps you manage your contact book, notes, and more with simple and intuitive commands.
 
+![Logo](https://github.com/dishalex/Infinity/blob/main/Infinity/Documentation/logo.jpg)
+
+Photo by [Izabel](https://unsplash.com/@peacelily234?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText")
+
 ## Table of Contents
 - [Features](#features)
 - [Usage](#usage)
