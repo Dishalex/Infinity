@@ -57,5 +57,6 @@ edit tags test-note
 search note test-note
 search tag #test-tag
 
+
 ### Input Errors:
 <*name> field is required for all commands except: 'hello', 'help', 'show all', 'show notes', 'show page'
