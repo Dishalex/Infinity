@@ -1,23 +1,24 @@
-| Alias | Command Syntax          | Description                                      |
-|-------|-------------------------|--------------------------------------------------|
-| hi    | hello                   | show greeting                                    |
-| h     | help                    | show help message                                |
-| a     | add <name>              | add a contact book record                        |
-| a     | add <name> <data>       | add a contact's bday/phone/email                 |
-| c     | change <name> <data>    | change a contact's data                          |
-| d     | delete <name>           | delete record                                    |
-| d     | delete <name>  <data>   | delete bday/phone/email on record                |
-| s     | search <name>           | search record(s)                                 |
-| sa    | show all                | show all records in a browsing mode              |
-| sp    | show page <page_num>    | show records page in a browsing mode             |
-| sp    | show phones <name>      | list a phone on record                           |
-| se    | show emails <name>      | list emails on record                            |
-| sb    | show birthday <name>    | show birthday on record                          |
-| d2b   | days to birthday <name> | show days to birthday                            |
-| sn    | show notes              | show all notes and their tags in a browsing mode |
-| an    | add note <name>         | add a new note                                   |
-| en    | edit note <name>        | edit an existing note                            |
-| dn    | delete note <name>      | delete an existing note                          |
-| at    | add tags <name>         | add tags                                         |
-| dt    | delete tags <name>      | delete all tags from a note                      |
-| et    | edit tags <name>        | edit tags in a default text editor               |
+| Command Syntax          | Description                                                                |
+|-------------------------|----------------------------------------------------------------------------|
+| hello                   | show greeting                                                              |
+| help                    | show help message                                                          |
+| add <name>              | add a contact book record                                                  |
+| add <name> <data>       | add a contact's bday/phone/email                                           |
+| change <name> <data>    | change a contact's data                                                    |
+| delete <name>           | delete record                                                              |
+| delete <name>  <data>   | delete bday/phone/email on record                                          |
+| search <name>           | search record(s)                                                           |
+| show all                | show all records in a browsing mode                                        |
+| show page <page_num>    | show records page in a browsing mode                                       |
+| show phones <name>      | list a phone on record                                                     |
+| show emails <name>      | list emails on record                                                      |
+| show birthday <name>    | show birthday on record                                                    |
+| days to birthday <name> | show days to birthday                                                      |
+| note                    | Enter note taking mode                                                     |
+| show all                | (in the note taking mode) show all notes and their tags in a browsing mode |
+| add note <name> <tags>  | (in the note taking mode) add a new note                                   |
+| delete note <name>      | (in the note taking mode) delete an existing note                          |
+| edit note <name>        | (in the note taking mode) edit an existing note                            |
+| edit tags <name>        | (in the note taking mode) edit tags in a default text editor               |
+| search note <name>      | (in the note taking mode) search for notes by name                         |
+| search tag <tag>        | (in the note taking mode) search for note by tag                           |
