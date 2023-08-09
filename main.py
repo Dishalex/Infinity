@@ -9,10 +9,14 @@ from address_book import AdressBook
 from rich import print
 from rich.table import Table
 from exceptions import PhoneMustBeNumber, BirthdayException, EmailException, Name_Error
+from sort_folder import sort
+
 I = 1
 
 address_book = AdressBook()
 
+def sort_folder_command(args):
+    return sort()
 
 def address_book_commands():
     table_address_book = Table(
@@ -376,15 +380,9 @@ COMMANDS = {
     delete_email_command: ("delete email",),
     delete_record_command: ("delete record", "remove"),
     delete_address_command: ("delete address", "remove address"),
-    days_to_birthday_command: ("days to birthday", "dtb",)
-    # delete_phone_command: ('delete',),
-    # exit_command: ('good bye', 'close', 'exit'),
-    # show_all_command: ('show all',),
-    # help_command: ('help',),
-    # birthday_command: ('birthday',),
-    # search_command: ('search',)
+    days_to_birthday_command: ("days to birthday", "dtb",),
+    sort_folder_command: ("sort",)
 }
-
 
 def get_user_name(user_info: str) -> tuple:
 
