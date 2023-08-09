@@ -1,7 +1,7 @@
 from setuptools import setup, find_namespace_packages
 
 setup(name='Infinity',
-      version='0.1.0',
+      version='0.1.1',
       description='This command-line program helps you manage your contact book, notes, and more with simple and intuitive commands.',
       url='https://github.com/Dishalex/Infinity',
       author='Oleksandr Dyshliuk, Dmytro Kruhlov, Michael Ivanov, Artem Dorofeev, Igor Yevtushenko',
