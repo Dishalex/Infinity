@@ -6,6 +6,7 @@ from Infinity.name import Name, Name_Error
 from Infinity.phone import Phone
 from Infinity.birthday import Birthday
 from Infinity.address_book import AdressBook
+from rich import print
 from rich.table import Table
 from Infinity.exceptions import PhoneMustBeNumber, BirthdayException, EmailException, Name_Error
 from Infinity.sort_folder import sort
