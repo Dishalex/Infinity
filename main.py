@@ -339,7 +339,7 @@ def delete_email_command(args):
 def no_command(args) -> str:
     suggest = suggest_command(args[0])
     if suggest:
-        print(f"You made a mistake, maybe you mean {suggest}? Try again")
+        return f'You made a mistake, maybe you mean "{suggest}"? Try again'
     return 'Unknown command'
 
 
