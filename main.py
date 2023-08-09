@@ -10,7 +10,7 @@ from rich import print
 from rich.table import Table
 from exceptions import PhoneMustBeNumber, BirthdayException, EmailException, Name_Error
 from sort_folder import sort
-
+from suggest import suggest_command
 I = 1
 
 address_book = AdressBook()
@@ -337,6 +337,7 @@ def delete_email_command(args):
 
 
 def no_command(args) -> str:
+    
     return 'Unknown command'
 
 
