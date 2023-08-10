@@ -18,7 +18,9 @@ setup(name='Infinity',
       install_requires=["rich == 13.5.2",
                         "zipp == 3.16.2",
                         "spacy == 3.6.0",
-                        "Levenshtein == 0.21.1"])
+                        "Levenshtein == 0.21.1",
+                        "en-core-web-md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.6.0/en_core_web_md-3.6.0-py3-none-any.whl"
+                        ])
                         #"en-core-web-md == 3.6.0"])
 
 
