@@ -47,7 +47,6 @@ To get started, clone this repository and follow the installation instructions i
 | delete note {name}       | (in the note taking mode) Delete an existing note.                        |
 | edit note {name}         | (in the note taking mode) Edit an existing note in a text editor.         |
 | edit tags {name}         | (in the note taking mode) Edit tags via cli interface.                    |
-| search name {name}       | (in the note taking mode) Search for notes by name.                       |
 | search tags {name}       | (in the note taking mode) Search for notes by tag.                        |
 
 ## Examples
