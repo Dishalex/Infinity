@@ -67,7 +67,7 @@ def address_book_commands():
     table_address_book.add_row(
         "sort", "-", "-", "-", "-", "-", "Sorting folder in the enetered path")
     table_address_book.add_row(
-        "nout", "-", "-", "-", "-", "-", "Opens Nout Book. Use \"help\" inside Note Book to see all commands ")
+        "note", "-", "-", "-", "-", "-", "Opens Nout Book. Use \"help\" inside Note Book to see all commands ")
     table_address_book.add_row(
         "good bye / close / exit", "-", "-", "-", "-", "-", "Exit")
     table_address_book.add_row(
