@@ -75,19 +75,7 @@ def address_book_commands():
     return table_address_book
 
 
-# def note_book_commands():
-#     table_note_book = Table(title='\nALL COMMANDS FOR NOTE BOOK:')
-#     table_note_book.add_column('COMMAND', justify='left')
-#     table_note_book.add_column('NUNMBER', justify='left')
-#     table_note_book.add_column('DATA', justify='letf')
-#     table_note_book.add_column('TAGS', justify='letf')
-#     table_note_book.add_column('NOTE', justify='left')
-#     table_note_book.add_column('DESCRIPTION', justify='left')
-#     table_note_book.add_row('add note', '-', '-', 'Tags', 'Note')
-
-#     return table_note_book
-
-def note_command():
+def note_command(args):
     return note_book()
 
 
@@ -97,8 +85,7 @@ def exit_command(args):
 
 
 def help_command(args):
-    print(address_book_commands())
-    return note_book_commands()
+    return address_book_commands()
 
 
 def show_all_command(args):
@@ -460,7 +447,6 @@ def main():
     if I == 1:
         address_book.load_data()
         print(address_book_commands())
-        #print(note_book_commands())
         I += 1
 
     while True:
