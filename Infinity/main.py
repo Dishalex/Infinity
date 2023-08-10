@@ -10,7 +10,9 @@ from rich import print
 from rich.table import Table
 from Infinity.exceptions import PhoneMustBeNumber, BirthdayException, EmailException, Name_Error
 from Infinity.sort_folder import sort
-# from Infinity.suggest import suggest_command
+from Infinity.suggest import suggest_command
+from Infinity.note import note_book
+
 I = 1
 
 address_book = AdressBook()
@@ -65,23 +67,16 @@ def address_book_commands():
     table_address_book.add_row(
         "sort", "-", "-", "-", "-", "-", "Sorting folder in the enetered path")
     table_address_book.add_row(
+        "nout", "-", "-", "-", "-", "-", "Opens Nout Book. Use \"help\" inside Note Book to see all commands ")
+    table_address_book.add_row(
         "good bye / close / exit", "-", "-", "-", "-", "-", "Exit")
     table_address_book.add_row(
         "help", "-", "-", "-", "-", "-", "Printing table of commands")
     return table_address_book
 
 
-def note_book_commands():
-    table_note_book = Table(title='\nALL COMMANDS FOR NOTE BOOK:')
-    table_note_book.add_column('COMMAND', justify='left')
-    table_note_book.add_column('NUNMBER', justify='left')
-    table_note_book.add_column('DATA', justify='letf')
-    table_note_book.add_column('TAGS', justify='letf')
-    table_note_book.add_column('NOTE', justify='left')
-    table_note_book.add_column('DESCRIPTION', justify='left')
-    table_note_book.add_row('add note', '-', '-', 'Tags', 'Note')
-
-    return table_note_book
+def note_command(args):
+    return note_book()
 
 
 def exit_command(args):
@@ -90,8 +85,7 @@ def exit_command(args):
 
 
 def help_command(args):
-    print(address_book_commands())
-    return note_book_commands()
+    return address_book_commands()
 
 
 def show_all_command(args):
@@ -358,9 +352,9 @@ def delete_email_command(args):
 
 
 def no_command(args) -> str:
-    # suggest = suggest_command(args[0])
-    # if suggest:
-    #     return f'You made a mistake, maybe you mean "{suggest}"? Try again'
+    suggest = suggest_command(args[0])
+    if suggest:
+        return f'You made a mistake, maybe you mean "{suggest}"? Try again'
     return 'Unknown command'
 
 
@@ -404,7 +398,8 @@ COMMANDS = {
     delete_record_command: ("delete record", "remove",),
     delete_address_command: ("delete address", "remove address",),
     days_to_birthday_command: ("days to birthday", "dtb",),
-    sort_folder_command: ("sort",)
+    sort_folder_command: ("sort",),
+    note_command: ("note",)
 }
 
 
@@ -452,7 +447,6 @@ def main():
     if I == 1:
         address_book.load_data()
         print(address_book_commands())
-        print(note_book_commands())
         I += 1
 
     while True:
