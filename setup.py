@@ -1,7 +1,7 @@
 from setuptools import setup, find_namespace_packages
 
 setup(name='Infinity',
-      version='0.2.2',
+      version='0.2.3',
       description='This command-line program helps you manage your contact book, notes, and more with simple and intuitive commands.',
       url='https://github.com/Dishalex/Infinity',
       author='Oleksandr Dyshliuk, Dmytro Kruhlov, Michael Ivanov, Artem Dorofeev, Igor Yevtushenko',
@@ -14,7 +14,7 @@ setup(name='Infinity',
       include_package_data=True,
       packages=find_namespace_packages(),
       #entry_points={'console_scripts': ['start = Infinity.main:main']})
-      entry_points={'console_scripts': ['bot = Infinity.main:main']},
+      entry_points={'console_scripts': ['infinity = Infinity.main:main']},
       install_requires=["rich == 13.5.2",
                         "zipp == 3.16.2",
                         "spacy == 3.6.0",
