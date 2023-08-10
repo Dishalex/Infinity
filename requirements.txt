@@ -1,0 +1,5 @@
+rich==13.5.2
+zipp==3.16.2
+spacy==3.6.0
+Levenshtein==0.21.1
+en-core-web-md == 3.6.0
