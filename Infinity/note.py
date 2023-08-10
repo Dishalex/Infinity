@@ -133,7 +133,7 @@ def note_book() -> None:
         os.mkdir(NOTES_FOLDER)
 
     while True:
-        command = input(">>> ")
+        command = input("\nEnter valid commad or enter \"exit\" to leave>>> ")
         parts = command.split()
 
         if not parts:
