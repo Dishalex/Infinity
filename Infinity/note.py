@@ -125,7 +125,7 @@ def open_in_default_editor(filename: str) -> None:
         print(f"[-] Error opening the file in the default editor: {e}")
 
 
-def main() -> None:
+def note_book() -> None:
     if not os.path.exists(NOTES_FOLDER):
         os.mkdir(NOTES_FOLDER)
 
@@ -166,4 +166,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    note_book()

@@ -124,7 +124,14 @@ def print_all_exrentions(path: Path)-> list:
 
 def sort():
     try:
-        user_input = input("\nEnter path to folder\n>>>" )
+        user_input = input("\nEnter valid path to folder or enter \"exit\" to leave programm \n>>>" )
+
+        if user_input == "exit":
+            return ("End of programm!\n")
+        if user_input == "":
+            print ("\nPath cannot be empty!")
+            return sort()
+        
         path = Path(user_input)
     except IndexError:
         return print ('There is no path to folder! Enter path!')
