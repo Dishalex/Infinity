@@ -11,7 +11,7 @@ from rich.table import Table
 from Infinity.exceptions import PhoneMustBeNumber, BirthdayException, EmailException, Name_Error
 from Infinity.sort_folder import sort
 # from Infinity.suggest import suggest_command
-from note import note_book
+from Infinity.note import note_book
 
 I = 1
 
