@@ -25,17 +25,5 @@ def sanitize_phone_number(phone):
     return new_phone
 
 if __name__ == '__main__':
-    phone = '1990/12/12'
-    #phone = "38050-111-22-2"
-    #phone = "    +38(050)1233234"
-    #phone = "     0503451234"
-    #phone = ' 1234567891111234'
-
-    print (sanitize_phone_number(phone))
-
-# "    +38(050)123-32-34"
-# "     0503451234"
-# #(050)8889900"
-# "38050-111-22-22"
-# "38050 111 22 11   "
+    pass
 

@@ -124,9 +124,6 @@ def open_in_default_editor(filename: str) -> None:
     except Exception as e:
         print(f"[-] Error opening the file in the default editor: {e}")
     
-# def exit_command():
-#     return "\nEnd of programm!"
-
 
 def note_book() -> None:
     if not os.path.exists(NOTES_FOLDER):
