@@ -124,8 +124,8 @@ def open_in_default_editor(filename: str) -> None:
     except Exception as e:
         print(f"[-] Error opening the file in the default editor: {e}")
     
-def exit_command():
-    return "\nEnd of programm!"
+# def exit_command():
+#     return "\nEnd of programm!"
 
 
 def note_book() -> None:
@@ -163,7 +163,7 @@ def note_book() -> None:
         elif action == 'clear' and len(parts) == 1:
             os.system('cls' if os.name == 'nt' else 'clear')
         elif action == 'exit' and len(parts) == 1:
-            exit_command()
+            return "End of programm!"
         else:
             print("[-] Invalid command. Try again.")
 
