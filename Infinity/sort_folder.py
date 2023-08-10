@@ -144,6 +144,3 @@ def sort():
 
 if __name__ == '__main__':
     print(sort())
-
-#Path to test: D:\VSCode_projects\Unsorted_hw6_main
-#Path to test: D:\VSCode_projects\Unsorted_hw6_main_repeat
